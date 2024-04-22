@@ -115,7 +115,7 @@ async def member_join_handler(client, message):
 # admin message handler
 @app.on_message(filters.private & IsAdmin(app) & BotCommands.settings)
 async def admin_setting_handler(client, message):
-    buystatus = "فعال" if cohandler.config["bot"]["buystatus"] == "True" else "غیر فعال"
+    buystatus = "فعال" if cohandler.config["settings"]["buystatus"] == "True" else "غیر فعال"
     sponsor_channel = (
         "فعال" if cohandler.config["bot"]["sponsor_channel"] != False else "غیر فعال"
     )
@@ -128,7 +128,7 @@ async def admin_setting_handler(client, message):
 
 @app.on_callback_query(dynamic_data_filter("backtoSettingmanage"))
 async def backtoSettingmanage(client, query):
-    buystatus = "فعال" if cohandler.config["bot"]["buystatus"] == "True" else "غیر فعال"
+    buystatus = "فعال" if cohandler.config["settings"]["buystatus"] == "True" else "غیر فعال"
     sponsor_channel = (
         "فعال" if cohandler.config["bot"]["sponsor_channel"] != False else "غیر فعال"
     )
@@ -748,7 +748,7 @@ async def memmberStepHandler(client, message):
 @app.on_callback_query(dynamic_data_filter("change_buy_status"))
 async def change_buy_status(client, query):
     buystatus = (
-        "✅ فعال" if cohandler.config["bot"]["buystatus"] == "True" else "❌ غیر فعال"
+        "✅ فعال" if cohandler.config["settings"]["buystatus"] == "True" else "❌ غیر فعال"
     )
 
     keybutton = InlineKeyboardMarkup(
@@ -795,7 +795,7 @@ async def change_sponsor(client, query):
 async def change_buy_statusOn(client, query):
     cohandler.update_config("bot", "buystatus", "True")
     buystatus = (
-        "✅ فعال" if cohandler.config["bot"]["buystatus"] == "True" else "❌ غیر فعال"
+        "✅ فعال" if cohandler.config["settings"]["buystatus"] == "True" else "❌ غیر فعال"
     )
 
     keybutton = InlineKeyboardMarkup(
@@ -821,7 +821,7 @@ async def change_buy_statusOn(client, query):
 async def change_buy_statusOff(client, query):
     cohandler.update_config("bot", "buystatus", "False")
     buystatus = (
-        "✅ فعال" if cohandler.config["bot"]["buystatus"] == "True" else "❌ غیر فعال"
+        "✅ فعال" if cohandler.config["settings"]["buystatus"] == "True" else "❌ غیر فعال"
     )
 
     keybutton = InlineKeyboardMarkup(
@@ -1755,7 +1755,7 @@ async def Paywithrial(client, query):
 @app.on_callback_query(dynamic_data_filter("Buypayrial"))
 async def Paywithrial(client, query):
     UserId = query.from_user.id
-    if cohandler.config["bot"]["buystatus"] != "True":
+    if cohandler.config["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
 
@@ -1802,7 +1802,7 @@ async def Paywithnow(client, query):
 @app.on_callback_query(dynamic_data_filter("buypaywithcard"))
 async def buypaywithcard(client, query):
     UserId = query.from_user.id
-    if cohandler.config["bot"]["buystatus"] != "True":
+    if cohandler.config["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[1]
@@ -1814,7 +1814,7 @@ async def buypaywithcard(client, query):
 @app.on_callback_query(dynamic_data_filter("buypaywithnow"))
 async def BuyPaywithnow(client, query):
     UserId = query.from_user.id
-    if cohandler.config["bot"]["buystatus"] != "True":
+    if cohandler.config["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[1]
@@ -1848,7 +1848,7 @@ async def paywithbalance(client, query):
         )
 
     UserId = query.from_user.id
-    if cohandler.config["bot"]["buystatus"] != "True":
+    if cohandler.config["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[1]
@@ -1941,7 +1941,7 @@ async def PayCoin(client, query):
 
     UserId = query.from_user.id
     coin = query.data.split(":")[1]
-    if cohandler.config["bot"]["buystatus"] != "True":
+    if cohandler.config["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[2]

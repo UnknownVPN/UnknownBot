@@ -9,7 +9,7 @@ cohandler = ConfigHandler()
 
 class Api_Request_handler:
     def __init__(self) -> None:
-        self.url = cohandler.config["bot"]["unknow_api_url"]
+        self.url = cohandler.config["payment"]["unknow_api_url"]
 
     async def send_requets(self, url, payload, headers):
         async with aiohttp.ClientSession() as session:
