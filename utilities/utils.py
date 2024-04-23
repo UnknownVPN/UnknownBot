@@ -33,7 +33,7 @@ def change_config_name(config: str, name: str, flag: str):
 
 
 def config_domains_check():
-    r = requests.get(cohandler.config["giturl"])
+    r = requests.get(cohandler.config["settings"]["giturl"])
     data = r.text.splitlines()
     unknownvpn_url = data[0]
     card_gateway = data[1]
