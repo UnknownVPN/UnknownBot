@@ -2,7 +2,7 @@ from base64 import b64encode, b64decode
 from json import loads, dumps
 from urllib.parse import quote
 from utilities.config_handler import ConfigHandler
-
+import requests
 
 cohandler = ConfigHandler()
 
@@ -30,3 +30,12 @@ def change_config_name(config: str, name: str, flag: str):
         config = f"{_config}#{quote(change_service_name(name, flag))}"
 
         return config
+
+
+def config_domains_check():
+    r = requests.get("https://raw.githubusercontent.com/UnknownVPN/UnknownBot/main/domains.txt")
+    data = r.text.splitlines()
+    unknownvpn_url = data[0]
+    card_gateway = data[1]
+    cohandler.update_config("payment", "card_gateway", card_gateway)
+    cohandler.update_config("payment", "unknow_api_url", unknownvpn_url)

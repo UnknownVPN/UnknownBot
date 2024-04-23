@@ -36,8 +36,11 @@ unknownApi = Api_Request_handler()
 nowapi = NowPaymentHandler()
 
 from utilities.notifier import notifier
+from utilities.utils import config_domains_check
 from services.card.card_service import handl_trasection, get_card
 
+
+config_domains_check()
 
 def chunks(lst, n):
     for i in range(0, len(lst), n):
