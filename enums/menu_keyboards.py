@@ -226,9 +226,9 @@ ANDROID_TEXT = (
 📌 جهت اتصال به پروتکل های vmess/vlessمیتوانید از برنامه های زیر استفاده کنید
 
 🔸 <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">V2rayNg</a> - <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">Clash</a>
 
 🆔 @"""
@@ -242,9 +242,9 @@ WINDOWS_TEXT = (
 
 
 🔸 <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">Clash Verge</a> - <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">Netch</a>
 
 
@@ -259,11 +259,11 @@ MAC_TEXT = (
 
 
 🔸 <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">ShadowRocket</a> - <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">Clash Verge</a> - <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">OneClick</a>
 
 
@@ -278,9 +278,9 @@ IOS_TEXT = (
 
 
 🔹<a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">NapsternetV</a> - <a href="https://t.me/"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
     + """">ShadowRocket</a>
 
 
@@ -303,14 +303,14 @@ SUPPORT_TEXT = (
 
 🔗 برای ارتباط با تیم پشتیبانی، به آیدی زیر پیام دهید:
 📌 @"""
-    + cohandler.config["sponsor_admin"]
+    + cohandler.config["bot"]["sponsor_admin"]
     + """
 
 ⚠️ قبل از ارسال پیام، لطفاً بخش [💡 سوالات متداول] را بررسی کنید تا سریع‌تر به پاسخ سوال خود برسید.
 
 🔍 برای اخبار و اطلاعات بیشتر، به کانال ما بپیوندید:
 🆔 @"""
-    + cohandler.config["sponsor_channel"]
+    + cohandler.config["bot"]["sponsor_channel"]
 )
 
 REFERRAL_TEXT = (
@@ -395,7 +395,7 @@ ERROR_PHONE_NUMBER_TEXT = (
 
 PRICE_PRODUCTS_TEXT = (
     f"""📣 تعرفه‌های سرویس‌های """
-    + cohandler.config["custom_name"]
+    + cohandler.config["bot"]["custom_name"]
     + f""" 🚀
 
 <b>⏰ سرویس های یک ماهه</b>
@@ -414,7 +414,7 @@ PRICE_PRODUCTS_TEXT = (
 
 
 ☎️ در صورت هرگونه سوال یا نیاز به راهنمایی، با ما تماس بگیرید: @"""
-    + cohandler.config["sponsor_admin"]
+    + cohandler.config["bot"]["sponsor_admin"]
     + """
 
 🆔 @"""
