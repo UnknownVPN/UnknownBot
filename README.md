@@ -51,3 +51,34 @@ UnknownVpn provides high-speed VPN configurations powered by the V2ray protocol.
    ```bash
    python3 main.py
    ```
+
+## Using [Docker](https://www.docker.com/) <img src="https://github.com/devicons/devicon/blob/master/icons/docker/docker-original.svg" alt="docker" width="40" height="40"/>
+
+This repository contains the Dockerfile and necessary configurations to dockerize UnknownVPN.
+
+### Prerequisites
+- Docker installed on your machine
+
+### Getting Started
+1. Clone this repository to your local machine.
+2. Place your configuration file `config.ini` in the root directory of the project.
+
+### Building the Docker Image
+To build the Docker image, run the following command in the project directory:
+```
+docker build -t unknownvpn .
+```
+
+### Running the Container
+To run the container, use the following command:
+```
+docker run -d unknownvpn
+```
+
+### Accessing the Container
+If you need to access the running container, follow these steps:
+1. Use the command `docker ps` to display the running containers and note the container ID.
+2. Use the following command to access the container:
+```
+docker exec -it <container_id> bash
+```
