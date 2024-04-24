@@ -127,8 +127,8 @@ async def handl_trasection(stop_event):
 
 
 async def get_transaction_status(card: int, amount: int):
-    url = cohandler["payemnt"]["card_gateway"]
-    admin_key = cohandler["payemnt"]["card_admin_key"]
+    url = cohandler["payment"]["ghoghnoos_gateway"]
+    admin_key = cohandler["payment"]["ghoghnoos_admin_key"]
 
     try:
         data = requests.post(
@@ -152,8 +152,8 @@ async def get_transaction_status(card: int, amount: int):
 
 
 async def get_card():
-    url = cohandler["payemnt"]["card_gateway"]
-    admin_key = cohandler["payemnt"]["card_admin_key"]
+    url = cohandler["payment"]["ghoghnoos_gateway"]
+    admin_key = cohandler["payment"]["ghoghnoos_admin_key"]
 
     try:
         _request = requests.post(f"{url}/getCards", json={"key": admin_key})

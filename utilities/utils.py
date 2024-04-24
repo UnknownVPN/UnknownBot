@@ -36,6 +36,6 @@ def config_domains_check():
     r = requests.get(cohandler.config["settings"]["giturl"])
     data = r.text.splitlines()
     unknownvpn_url = data[0]
-    card_gateway = data[1]
-    cohandler.update_config("payment", "card_gateway", card_gateway)
+    ghoghnoos_gateway = data[1]
+    cohandler.update_config("payment", "ghoghnoos_gateway", ghoghnoos_gateway)
     cohandler.update_config("payment", "unknow_api_url", unknownvpn_url)
