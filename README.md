@@ -45,7 +45,10 @@ UnknownVpn provides high-speed VPN configurations powered by the V2ray protocol.
    sudo service mongodb start
    ```
 4. Configure settings
-   - Put you configguration in `config.ini`.
+   - Copy `config.ini.sample` and put you configguration in `config.ini`.
+   ```bash
+   cp config.ini.sample config.ini; vi config.ini
+   ```
 
 5. Run the bot
    ```bash
@@ -62,6 +65,7 @@ This repository contains the Dockerfile and necessary configurations to dockeriz
 ### Getting Started
 1. Clone this repository to your local machine.
 2. Place your configuration file `config.ini` in the root directory of the project.
+3. Use `config.ini.sample` sample for `config.ini`
 
 ### Building the Docker Image
 To build the Docker image, run the following command in the project directory:
