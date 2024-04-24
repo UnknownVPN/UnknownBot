@@ -22,7 +22,7 @@ async def arzpyment_checker(pay):
     try:
         paystatus = await nowApi.PaymentStatus(pay["payment_id"])
         if paystatus:
-            if paystatus["payment_status"] == "finished" and ["status"] == "pending":
+            if paystatus["payment_status"] == "finished" and paystatus["status"] == "pending":
                 await db.updatePaymentStatus(pay["_id"], "Done")
                 if "BuyService" in pay["detail"]:
                     _, server_id, user_count, size, CHtime = pay["detail"].split("_")

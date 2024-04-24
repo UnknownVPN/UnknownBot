@@ -64,6 +64,7 @@ class NowPaymentHandler:
         res = await self.send_requets(url, payload, headers)
         return round(float(res["data"]["toman"]), 2)
 
+
 SOFT_COINS_NAME = {
     "trx": "Tron (trx)",
 }

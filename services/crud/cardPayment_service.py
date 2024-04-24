@@ -43,7 +43,6 @@ class CardPayment(MongoDBHandler):
 
     async def get_user_card_payments(self, user_id: int):
         query = {"user_id": user_id}
-
         userPayments = await self.find_all(self.CardpayCollectionName, query)
         return userPayments
 
@@ -54,3 +53,8 @@ class CardPayment(MongoDBHandler):
     async def getCardPayment(self, Card_Number: int, amount: int):
         query = {"status": "pending", "Card_Number": Card_Number, "amount": amount}
         return await self.find(self.CardpayCollectionName, query)
+
+    async def get_card_pending(self, card_number: int):
+        query = {"Card_Number": card_number}
+        data = await self.find_all(self.CardpayCollectionName, query)
+        return data

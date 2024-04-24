@@ -481,13 +481,20 @@ async def memmberStepHandler(client, message):
                 )
                 return
 
+            _card = int(message.text.replace("-", "").replace(" ", ""))
+            card_in_use = await db.get_card_pending(_card)
+            card_in_use = list(filter(lambda x: x["status"] == "pending" and x["user_id"] != UserId,card_in_use)) != []
+            if card_in_use:
+                await message.reply(CARD_IN_USE,reply_markup=HELLO_BUTTONS)
+                return
+            
             await message.reply(
                 PAY_CARD_TEXT.format(payment["amount"], data["number"], data["name"]),
                 reply_markup=HELLO_BUTTONS,
             )
             await db.insertCardPayments(
                 UserId,
-                int(message.text.replace("-", "").replace(" ", "")),
+                _card,
                 payment["amount"],
                 "pending",
                 userStep.split(":")[1],
