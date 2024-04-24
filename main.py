@@ -27,6 +27,9 @@ import pytz
 from random import choices
 from enums.app import app
 
+from utilities.notifier import notifier
+from utilities.utils import config_domains_check
+from services.card.card_service import handl_trasection, get_card
 
 # initialization pyrogram telegram
 nest_asyncio.apply()
@@ -34,11 +37,6 @@ cohandler = ConfigHandler()
 db = dbService()
 unknownApi = Api_Request_handler()
 nowapi = NowPaymentHandler()
-
-from utilities.notifier import notifier
-from utilities.utils import config_domains_check
-from services.card.card_service import handl_trasection, get_card
-
 
 config_domains_check()
 
