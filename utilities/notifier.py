@@ -13,11 +13,17 @@ cohandler = ConfigHandler()
 
 connections = {}
 
+_count_to_log = 0
 
 async def notifier(stop_event):
+    global _count_to_log
     while not stop_event.is_set():
         Services = await db.get_all_services()
-        logger(__name__).info(f"services: {len(Services)}")
+        if _count_to_log == 10:
+            logger(__name__).info(f"services: {len(Services)}")
+            _count_to_log = 0
+
+        _count_to_log += 1
         for Service in Services:
             if stop_event.is_set():
                 break

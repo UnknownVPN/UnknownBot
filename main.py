@@ -1,3 +1,6 @@
+from utilities.utils import config_domains_check
+# config_domains_check()
+
 from pyrogram import filters, idle
 from pyrogram.types import (
     InlineKeyboardButton,
@@ -28,7 +31,6 @@ from random import choices
 from enums.app import app
 
 from utilities.notifier import notifier
-from utilities.utils import config_domains_check
 from services.card.card_service import handl_trasection, get_card
 
 # initialization pyrogram telegram
@@ -37,8 +39,6 @@ cohandler = ConfigHandler()
 db = dbService()
 unknownApi = Api_Request_handler()
 nowapi = NowPaymentHandler()
-
-config_domains_check()
 
 def chunks(lst, n):
     for i in range(0, len(lst), n):
@@ -729,18 +729,18 @@ async def memmberStepHandler(client, message):
         elif 5000000 >= int(message.text) >= 10000:
             list_inline = []
             # check ghoghnoos pay status
-            if cohandler.config["settings"]["ghoghnoos_payment"]:
+            if cohandler.config["settings"]["ghoghnoos_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💳 پرداخت با کارت به کارته خودکار",f"paywithcard:{message.text}")])
             
             # check crypto payment status
-            if cohandler.config["settings"]["crypto_payment"]:
+            if cohandler.config["settings"]["crypto_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💸 پرداخت با ارز دیجیتال",f"paywithnowpay:{message.text}")])
             
             # check crypto payment status
-            if cohandler.config["settings"]["card_to_card_channel_payment"]:
+            if cohandler.config["settings"]["card_to_card_channel_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💳 پرداخت ب صورت کارت به کارت",f"paywithc2c_custom:{message.text}")])
 
-            keyboard = InlineKeyboardMarkup()
+            keyboard = InlineKeyboardMarkup(list_inline)
             await message.reply(
                 ADD_BALANCE_FINAL_TEXT.format(message.text), reply_markup=keyboard
             )
