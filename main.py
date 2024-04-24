@@ -1,5 +1,5 @@
 from utilities.utils import config_domains_check
-# config_domains_check()
+config_domains_check()
 
 from pyrogram import filters, idle
 from pyrogram.types import (
