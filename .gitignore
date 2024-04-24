@@ -159,5 +159,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+# ignore pyrogram session
 unknownvpn.session
+unknownvpn.session-journal
+
+# ignore config
 config.ini

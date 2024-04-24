@@ -720,18 +720,20 @@ async def memmberStepHandler(client, message):
             return
 
         elif 5000000 >= int(message.text) >= 10000:
-            keyboard = InlineKeyboardMarkup(
-                [
-                    # [InlineKeyboardButton('🏦 پرداخت با  درگاه بانکی ',f'paywithrial:{message.text}')],
-                    # [InlineKeyboardButton('💸 پرداخت با ارز دیجیتال',f'paywithnow:{message.text}')],
-                    [
-                        InlineKeyboardButton(
-                            "💳 پرداخت ب صورت کارت به کارت",
-                            f"paywithcard:{message.text}",
-                        )
-                    ]
-                ]
-            )
+            list_inline = []
+            # check ghoghnoos pay status
+            if cohandler.config["settings"]["ghoghnoos_payment"]:
+                list_inline.append([InlineKeyboardButton("💳 پرداخت با کارت به کارته خودکار",f"paywithcard:{message.text}")])
+            
+            # check crypto payment status
+            if cohandler.config["settings"]["crypto_payment"]:
+                list_inline.append([InlineKeyboardButton("💸 پرداخت با ارز دیجیتال",f"paywithnowpay:{message.text}")])
+            
+            # check crypto payment status
+            if cohandler.config["settings"]["card_to_card_channel_payment"]:
+                list_inline.append([InlineKeyboardButton("💳 پرداخت ب صورت کارت به کارت",f"paywithc2c_custom:{message.text}")])
+
+            keyboard = InlineKeyboardMarkup()
             await message.reply(
                 ADD_BALANCE_FINAL_TEXT.format(message.text), reply_markup=keyboard
             )
