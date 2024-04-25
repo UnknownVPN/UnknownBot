@@ -31,36 +31,45 @@ class prices:
         }
     }  
 
+    cs1 = 98_000
+    cs2 = 146_000
+    cs3 = 154_000
+    cs4 = 263_000
+    cs5 = 218_000
+    cs6 = 382_000
+    cs7 = 281_000
+    cs8 = 499_000
+
     service_dict = {
-        98_000: service_1,
-        146_000: service_2,
-        154_000: service_3,
-        263_000: service_4,
-        218_000: service_5,
-        382_000: service_6,
-        281_000: service_7,
-        499_000: service_8
+        cs1: service_1,
+        cs2: service_2,
+        cs3: service_3,
+        cs4: service_4,
+        cs5: service_5,
+        cs6: service_6,
+        cs7: service_7,
+        cs8: service_8
     }
 
     str_conf = [
         [
-            {"size": 25, "price": f"{service_dict[98_000]:,}"},
-            {"size": 50, "price": f"{service_dict[146_000]:,}"},
+            {"size": 25, "price": f"{cs1:,}"},
+            {"size": 50, "price": f"{cs2:,}"},
             "تک",
         ],
         [
-            {"size": 50, "price": f"{service_dict[154_000]:,}"},
-            {"size": 100, "price": f"{service_dict[263_000]:,}"},
+            {"size": 50, "price": f"{cs3:,}"},
+            {"size": 100, "price": f"{cs4:,}"},
             "دو",
         ],
         [
-            {"size": 75, "price": f"{service_dict[218_000]:,}"},
-            {"size": 150, "price": f"{service_dict[382_000]:,}"},
+            {"size": 75, "price": f"{cs5:,}"},
+            {"size": 150, "price": f"{cs6:,}"},
             "سه",
         ],
         [
-            {"size": 100, "price": f"{service_dict[281_000]:,}"},
-            {"size": 200, "price": f"{service_dict[499_000]:,}"},
+            {"size": 100, "price": f"{cs7:,}"},
+            {"size": 200, "price": f"{cs8:,}"},
             "چهار",
         ],
     ]
