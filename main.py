@@ -24,6 +24,7 @@ from enums.commands import BotCommands
 from enums.menu_keyboards import *
 from enums.prices import prices
 from threading import Thread
+import threading
 import io, nest_asyncio
 import asyncio
 import qrcode
@@ -2249,16 +2250,18 @@ async def main():
     logger(__name__).info("Running")
     await app.start()
     stopev = asyncio.Event()
+    stop_event = threading.Event()
     notifier_th = Thread(target=main_loop.create_task, args=(notifier(stopev),))
     handl_trasection_th = Thread(
         target=main_loop.create_task, args=(handl_trasection(stopev),)
     )
-    auto_backup_proc = Thread(target=auto_backup.backup_process,args=[stopev])
+    auto_backup_proc = Thread(target=auto_backup.backup_process,args=[stop_event])
     notifier_th.start()
     handl_trasection_th.start()
     auto_backup_proc.start()
     await idle()
     stopev.set()
+    stop_event.set()
     main_loop.stop()
     await app.stop()
 
