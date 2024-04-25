@@ -19,6 +19,7 @@ from utilities.custom_filters import *
 from utilities.CreateNewVpnServices import CreateService
 from utilities.card_validation import IsCARD_VALID
 from utilities.utils import change_config_name
+from utilities import auto_backup
 from enums.commands import BotCommands
 from enums.menu_keyboards import *
 from enums.prices import prices
@@ -2252,8 +2253,10 @@ async def main():
     handl_trasection_th = Thread(
         target=main_loop.create_task, args=(handl_trasection(stopev),)
     )
+    auto_backup_proc = Thread(target=auto_backup.backup_process)
     notifier_th.start()
     handl_trasection_th.start()
+    auto_backup_proc.start()
     await idle()
     stopev.set()
     main_loop.stop()

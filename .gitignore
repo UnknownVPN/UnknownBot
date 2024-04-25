@@ -165,3 +165,6 @@ unknownvpn.session-journal
 
 # ignore config
 config.ini
+
+# ignore mongodb dump
+backup.gz
