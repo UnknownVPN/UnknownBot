@@ -67,26 +67,29 @@ def dynamic_data_filter(data):
 
 def IsAdmin(client):
     async def func(flt, _, query):
-        userid = query.from_user.id
-        admins = cohandler.config["bot"]["admin"]
         try:
-            for admin in admins.split(","):
-                if admin.isdigit():
-                    if int(admin) == userid:
-                        return True
+            userid = query.from_user.id
+            admins = cohandler.config["bot"]["admin"]
+            try:
+                for admin in admins.split(","):
+                    if admin.isdigit():
+                        if int(admin) == userid:
+                            return True
+                        else:
+                            continue
                     else:
-                        continue
+                        if query.from_user.username.lower() == admin.lower():
+                            return True
+                        else:
+                            continue
                 else:
-                    if query.from_user.username.lower() == admin.lower():
-                        return True
-                    else:
-                        continue
-            else:
+                    return False
+            except Exception as ex:
+                logger(__name__).error(
+                    f"Chacking user admin status \n User-id:{userid} \n error : {ex} "
+                )
                 return False
-        except Exception as ex:
-            logger(__name__).error(
-                f"Chacking user admin status \n User-id:{userid} \n error : {ex} "
-            )
+        except:
             return False
 
     return filters.create(func, client=client)

@@ -23,12 +23,12 @@ def _send_file_tl(token, chat_id, filePath):
 
     data = {'chat_id': chat_id}
 
-    response = requests.post(url, files=files, json=data)
+    response = requests.post(url, files=files, data=data)
 
     return response.json()
 
-def backup_process():
-    while True:
+def backup_process(stop_event):
+    while not stop_event.is_set():
         backup()
         _send_file_tl(
             cohandler.config["bot"]["bot_token"],

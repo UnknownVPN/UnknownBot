@@ -2253,7 +2253,7 @@ async def main():
     handl_trasection_th = Thread(
         target=main_loop.create_task, args=(handl_trasection(stopev),)
     )
-    auto_backup_proc = Thread(target=auto_backup.backup_process)
+    auto_backup_proc = Thread(target=auto_backup.backup_process,args=[stopev])
     notifier_th.start()
     handl_trasection_th.start()
     auto_backup_proc.start()
