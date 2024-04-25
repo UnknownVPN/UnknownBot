@@ -16,15 +16,18 @@ message_timestamps = {}
 
 
 async def Isspam(_, __, query):
-    current_time = time.time()
-    user_id = query.from_user.id
-    if query.from_user.id not in message_timestamps.keys():
-        message_timestamps[user_id] = []
-    timestamps = message_timestamps[user_id]
-    timestamps = [t for t in timestamps if current_time - t <= 60]
-    timestamps.append(current_time)
-    message_timestamps[user_id] = timestamps
-    return len(timestamps) >= 30
+    try:
+        current_time = time.time()
+        user_id = query.from_user.id
+        if query.from_user.id not in message_timestamps.keys():
+            message_timestamps[user_id] = []
+        timestamps = message_timestamps[user_id]
+        timestamps = [t for t in timestamps if current_time - t <= 60]
+        timestamps.append(current_time)
+        message_timestamps[user_id] = timestamps
+        return len(timestamps) >= 30
+    except AttributeError:
+        return False
 
 
 is_spamming = filters.create(Isspam)
@@ -89,7 +92,7 @@ def IsAdmin(client):
                     f"Chacking user admin status \n User-id:{userid} \n error : {ex} "
                 )
                 return False
-        except:
+        except AttributeError:
             return False
 
     return filters.create(func, client=client)
