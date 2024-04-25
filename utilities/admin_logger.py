@@ -33,4 +33,4 @@ async def new_service_log(
         payment_id
     )
 
-    await app.send_message(configHandler.config["bot"]["log_channel"],text)
+    await app.send_message(int(configHandler.config["bot"]["log_channel"]),text)

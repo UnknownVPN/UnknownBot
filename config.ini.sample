@@ -13,6 +13,7 @@ sponsor_admin = sponsorsupport
 custom_name = Unknown Vpn
 custom_name_fa = انون وی پی ان
 backup_channel = -100123456789
+log_channel = -100123456789
 
 [payment]
 unknow_api_url = dont edit this
