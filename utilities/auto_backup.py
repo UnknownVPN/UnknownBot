@@ -17,17 +17,15 @@ def restore_backup(name:str):
     os.system(command)
 
 async def _send_file_tl(token, chat_id, filePath):
+    url = f"https://api.telegram.org/bot{token}/sendDocument"
 
-  url = f"https://api.telegram.org/bot{token}/sendDocument"
+    async with aiohttp.ClientSession() as session:
+        data = aiohttp.FormData()
+        data.add_field('document', open(filePath, 'rb'), filename=filePath)
+        data.add_field('chat_id', chat_id)
 
-  async with aiohttp.ClientSession() as session:
-
-    files = {'document': open(filePath, 'rb')}
-
-    data = {'chat_id': chat_id}
-
-    async with session.post(url, file=files, data=data) as response:
-      return await response.json()
+        async with session.post(url, data=data) as response:
+            return await response.json()
 
 async def backup_process(stop_event):
     while not stop_event.is_set():

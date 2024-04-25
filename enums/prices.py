@@ -44,23 +44,23 @@ class prices:
 
     str_conf = [
         [
-            {"size": 25, "price": f"{service_1:,}"},
-            {"size": 50, "price": f"{service_2:,}"},
+            {"size": 25, "price": f"{service_dict[98_000]:,}"},
+            {"size": 50, "price": f"{service_dict[146_000]:,}"},
             "تک",
         ],
         [
-            {"size": 50, "price": f"{service_3:,}"},
-            {"size": 100, "price": f"{service_4:,}"},
+            {"size": 50, "price": f"{service_dict[154_000]:,}"},
+            {"size": 100, "price": f"{service_dict[263_000]:,}"},
             "دو",
         ],
         [
-            {"size": 75, "price": f"{service_5:,}"},
-            {"size": 150, "price": f"{service_6:,}"},
+            {"size": 75, "price": f"{service_dict[218_000]:,}"},
+            {"size": 150, "price": f"{service_dict[382_000]:,}"},
             "سه",
         ],
         [
-            {"size": 100, "price": f"{service_7:,}"},
-            {"size": 200, "price": f"{service_8:,}"},
+            {"size": 100, "price": f"{service_dict[281_000]:,}"},
+            {"size": 200, "price": f"{service_dict[499_000]:,}"},
             "چهار",
         ],
     ]
