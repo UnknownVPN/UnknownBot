@@ -16,6 +16,7 @@ from jdatetime import datetime as jdate
 from datetime import datetime as date
 from utilities.config_handler import *
 from utilities.custom_filters import *
+from utilities import admin_logger
 from utilities.CreateNewVpnServices import CreateService
 from utilities.card_validation import IsCARD_VALID
 from utilities.utils import change_config_name
@@ -1312,7 +1313,7 @@ async def CoChangeLinks(client, query):
         return
     status = await unknownApi.ChangeLink(license)
     if status and status["status"] == True:
-        service = await unknownApi.getservicelinks(license)
+        service = await unknownApi.getservicelinks(license) # Bug
         await db.updateServicelink(license, service["direct"])
         keybutton = InlineKeyboardMarkup(
             [
@@ -1884,10 +1885,10 @@ async def paywithbalance(client, query):
                     ServiceInfo["service"]["name"],
                     UserId,
                     BuyStatus["license"],
+                    ServiceInfo["service"]["server_name"].split(" ")[0],
                     int(size),
                     int(user_count),
                     dir_link=dir_link["direct"],
-                    flag=ServiceInfo["service"]["server_name"].split(" ")[0],
                 )
 
                 await query.edit_message_text(
@@ -1899,10 +1900,19 @@ async def paywithbalance(client, query):
                     "Done",
                     f"BuyService_WithPalance_{BuyStatus['license']}",
                 )
-                await app.send_message(
-                    cohandler.config["bot"]["admin"],
-                    BUY_REPORT.format(payment_id, CHtime, user_count, size),
-                )
+                await admin_logger.new_service_log(
+                    app,
+                    "Balance",
+                    UserId,
+                    payment_id,
+                    BuyStatus['license'],
+                    ServiceInfo["service"]["name"],
+                    CHtime,
+                    user_count,
+                    size,
+                    f"{int(amount):,}"
+                    )
+                
                 user = await db.get_user(UserId)
                 if user["refferal"]:
                     await db.inc_user_amount(user["refferal"], prices.giftAmount)
