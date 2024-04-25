@@ -26,7 +26,7 @@ async def _send_file_tl(token, chat_id, filePath):
 
     data = {'chat_id': chat_id}
 
-    async with session.post(url, files=files, data=data) as response:
+    async with session.post(url, file=files, data=data) as response:
       return await response.json()
 
 async def backup_process(stop_event):
