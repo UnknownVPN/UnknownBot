@@ -3,6 +3,8 @@ from json import loads, dumps
 from urllib.parse import quote
 from utilities.config_handler import ConfigHandler
 import requests
+import base64
+import json
 
 cohandler = ConfigHandler()
 
@@ -11,6 +13,18 @@ def change_service_name(name: str, flag: str):
     custom_name = cohandler.getconfig["bot"]["custom_name"]
     return f"{custom_name} ({flag} {name})"
 
+def vless_to_nekoray(vless:str, name: str, flag: str):
+    data = vless.split("vless://")[1]
+    url_encoded = data.split("?")[0]
+    uuid = url_encoded.split("@")[0]
+    addr = url_encoded.split("@")[1].split(":")[0]
+    port = url_encoded.split("@")[1].split(":")[1]
+    host = url_encoded.split("&host=")[1].split("&")[0]
+    name_full = change_service_name(name,flag)
+    vless_nekoray = {"_v": 0, "addr": addr, "name": name_full, "pass": uuid, "port": port, "stream": {"ed_len": 0, "h_type": "http", "host": host, "insecure": False, "net": "tcp", "path": "/"}}
+    vless_nekoray = json.dumps(vless_nekoray)
+    vless_nekoray = base64.b64encode(vless_nekoray.encode()).decode()
+    return f"nekoray://vless#{vless_nekoray}"
 
 def change_config_name(config: str, name: str, flag: str):
     if config.startswith("vmess://"):

@@ -19,7 +19,7 @@ from utilities.custom_filters import *
 from utilities import admin_logger
 from utilities.CreateNewVpnServices import CreateService
 from utilities.card_validation import IsCARD_VALID
-from utilities.utils import change_config_name
+from utilities.utils import change_config_name,vless_to_nekoray
 from utilities import auto_backup
 from enums.commands import BotCommands
 from enums.menu_keyboards import *
@@ -1554,6 +1554,7 @@ async def SendQR(self, query):
         return
 
     dir_link = await unknownApi.getservicelinks(license)
+    print(dir_link)
     if not dir_link:
         return await apiQueryErrorHandler({"message": "unknown"}, query)
 
@@ -1575,9 +1576,20 @@ async def SendQR(self, query):
         byte_io = io.BytesIO()
         img.save(byte_io, "PNG")
         byte_io.seek(0)
-        await app.send_photo(
-            query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
-        )
+        if "vless://" in dir_link:
+            nekoray = vless_to_nekoray(
+                dir_link["direct"],
+                serviceinfo["service"]["name"],
+                serviceinfo["service"]["server_name"].split(" ")[0]
+            )
+
+            await app.send_photo(
+                query.from_user.id, photo=byte_io, caption=VLESS_TEXT.format(data,nekoray)
+            )
+        else:
+            await app.send_photo(
+                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
+            )
 
     else:
         await apiQueryErrorHandler(dir_link, query, "link")

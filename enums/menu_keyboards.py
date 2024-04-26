@@ -1288,6 +1288,14 @@ QRCODE_STRING = (
     + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
+VLESS_TEXT = """📌 لینک اتصال داخلی شما 👇
+
+🔗 Link (IP): {}
+
+🔗 Nekoray Link (IP): {}
+
+🆔 @"""+cohandler.getconfig["bot"]["sponsor_bot"]
+
 EXPIRING_SERVICE_TEXT = (
     """⏳ کاربر گرامی تنها {} از سرویس {} باقی مانده است، لطفا در اسرع وقت اقدام به تمدید سرویس خود نمایید.
 
