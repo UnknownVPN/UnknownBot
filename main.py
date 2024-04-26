@@ -318,9 +318,10 @@ async def user_services(client, message):
 @app.on_message(filters.private & BotCommands.balance)
 async def user_balance(client, message):
     user = await db.get_user(message.from_user.id)
+    amm = user["balance"]
     if user:
         await message.reply(
-            BALANCE_MESSAGE.format(user["_id"], f"{user["balance"]:,}"),
+            BALANCE_MESSAGE.format(user["_id"], f"{amm:,}"),
             reply_markup=BALANCE_BUTTONS,
         )
     return
@@ -427,8 +428,9 @@ async def memmberStepHandler(client, message):
                 await message.reply(CARD_IN_USE,reply_markup=HELLO_BUTTONS)
                 return
             
+            amm = payment["amount"]
             await message.reply(
-                PAY_CARD_TEXT.format(f"{payment["amount"]:,}", data["number"], data["name"]),
+                PAY_CARD_TEXT.format(f"{amm:,}", data["number"], data["name"]),
                 reply_markup=HELLO_BUTTONS,
             )
             await db.insertCardPayments(
