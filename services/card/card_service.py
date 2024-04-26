@@ -141,7 +141,8 @@ async def get_transaction_status(card: int, amount: int):
         ).json()
 
         if isinstance(data,bool):
-            logger(__name__).info(f"Payment Success! {card} {amount} {data}")
+            if data:
+                logger(__name__).info(f"Payment Success! {card} {amount} {data}")
             return data
         elif isinstance(data,dict):
             if data["status"]:

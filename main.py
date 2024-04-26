@@ -296,11 +296,12 @@ async def user_services(client, message):
     if user_services_list:
         for services in user_services_list:
             service = await unknownApi.getApiServiceInfo(services["license"])
+            protocol_name = "ᵛᵐᵉˢˢ" if service["service"]["protocol"] == "vmess" else "ᵛˡᵉˢˢ"
             if service:
                 servicebuttons.append(
                     [
                         InlineKeyboardButton(
-                            f"{services['flag']} {services['name']}",
+                            f"{services['flag']} {services['name']} {protocol_name}",
                             callback_data=f"getservice:{services['license']}",
                         )
                     ]
