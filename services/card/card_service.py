@@ -10,7 +10,7 @@ from enums.prices import prices
 
 db = dbService()
 unknownApi = Api_Request_handler()
-cohandler = ConfigHandler().getconfig()
+cohandler = ConfigHandler()
 
 
 async def handl_trasection(stop_event):
@@ -127,8 +127,8 @@ async def handl_trasection(stop_event):
 
 
 async def get_transaction_status(card: int, amount: int):
-    url = cohandler["payment"]["ghoghnoos_gateway"]
-    admin_key = cohandler["payment"]["ghoghnoos_admin_key"]
+    url = cohandler.getconfig["payment"]["ghoghnoos_gateway"]
+    admin_key = cohandler.getconfig["payment"]["ghoghnoos_admin_key"]
 
     try:
         data = requests.post(
@@ -152,8 +152,8 @@ async def get_transaction_status(card: int, amount: int):
 
 
 async def get_card():
-    url = cohandler["payment"]["ghoghnoos_gateway"]
-    admin_key = cohandler["payment"]["ghoghnoos_admin_key"]
+    url = cohandler.getconfig["payment"]["ghoghnoos_gateway"]
+    admin_key = cohandler.getconfig["payment"]["ghoghnoos_admin_key"]
 
     try:
         _request = requests.post(f"{url}/getCards", json={"key": admin_key},timeout=5)
