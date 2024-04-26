@@ -1263,7 +1263,8 @@ async def CoChangeLinks(client, query):
     status = await unknownApi.ChangeLink(license)
     if status and status["status"] == True:
         service = await unknownApi.getservicelinks(license) # Bug
-        await db.updateServicelink(license, service["direct"])
+        flag = serviceinfo["server_name"].split(" ")[0]
+        await db.updateServicelink(license, service["direct"],serviceinfo["name"],flag)
         keybutton = InlineKeyboardMarkup(
             [
                 [
