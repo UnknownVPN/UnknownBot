@@ -241,6 +241,9 @@ async def support_handler(client, message):
 
 @app.on_message(BotCommands.refferal)
 async def get_paid_handler(client, message):
+    if cohandler.getconfig["settings"]["refferal"] == "False":
+        await message.reply(THIS_SECTION_DISACTIVATED)
+        return
     botid = await app.get_me()
     # TODO get user refferal info
     refferalPayments = 0

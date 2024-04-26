@@ -29,3 +29,4 @@ ghoghnoos_payment = True
 crypto_payment = False
 card_to_card_channel_payment = False
 giturl = https://raw.githubusercontent.com/UnknownVPN/UnknownBot/main/domains.txt
+refferal = False
