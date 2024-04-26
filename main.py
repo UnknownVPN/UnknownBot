@@ -1750,6 +1750,8 @@ async def Paywithrial(client, query):
 async def Paywithnow(client, query):
     UserId = query.from_user.id
 
+    if cohandler.getconfig["settings"]["ghoghnoos_payment"] == "False":
+        return
     amount = int(query.data.split(":")[-1])
     detail = f"ADD_BALANCE_{amount}_rial_{UserId}"
     order_id = await db.insertPayments(UserId, amount, "pending", detail)
