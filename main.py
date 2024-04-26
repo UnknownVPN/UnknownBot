@@ -2166,6 +2166,77 @@ async def Add_user(client, query):
         await apiQueryErrorHandler(current_info, query)
 
 
+@app.on_message(filters.private & IsAdmin(app))
+async def AdminStepHandler(client, message):
+    UserId = message.from_user.id
+    user = await db.get_user(UserId)
+    if user == None:
+        await db.insertNewUser(UserId, "Home", "admin")
+        user = await db.get_user(UserId)
+    userStep = user["step"]
+    if userStep == "Send_PM":
+        if message.text:
+            if message.text == "🔙 بازگشت":
+                await message.reply("منوی اصلی", reply_markup=ADMIN_MAIN_MENU)
+                await db.updateUserStep(UserId, "Home")
+                return
+        keyboard = ReplyKeyboardMarkup(
+            [["✅ تایید"], ["🔙 بازگشت"]], resize_keyboard=True
+        )
+        await db.updateUserStep(UserId, f"confirmPM:{message.chat.id}:{message.id}")
+        await message.reply(CONFIRM_SEND_PM, reply_markup=keyboard)
+        return
+    elif userStep.split(":")[0] == "confirmPM":
+        if message.text:
+            if message.text == "🔙 بازگشت":
+                await message.reply(SEND_PM_TEXT, reply_markup=keyboard)
+                await db.updateUserStep(UserId, "Send_PM")
+                return
+            elif message.text == "✅ تایید":
+                await db.updateUserStep(UserId, "Home")
+                user_all = await db.get_all_users()
+                PM_COUNT = 0
+                ER_COUNT = 0
+                await app.send_message(
+                    UserId, "...درحال ارسال", reply_markup=ADMIN_MAIN_MENU
+                )
+                for i in user_all:
+                    try:
+                        await app.copy_message(
+                            i["_id"],
+                            int(userStep.split(":")[1]),
+                            int(userStep.split(":")[2]),
+                        )
+                        PM_COUNT += 1
+                        await asyncio.sleep(1)
+                    except FloodWait as e:
+                        await asyncio.sleep(e.value)
+                    except Exception as ex:
+                        logger(__name__).error("sending message error :{%s}" % ex)
+                        ER_COUNT += 1
+                        continue
+                await app.send_message(
+                    UserId,
+                    f" پیام ارسال  شد {PM_COUNT} ✅ \nتعداد خطا : {ER_COUNT} ❌",
+                    reply_markup=ADMIN_MAIN_MENU,
+                )
+                return
+
+    elif userStep == "send_channel":
+        if message.text:
+            if message.text == "🔙 بازگشت":
+                await message.reply(
+                    CANCEL_ADD_BALANCE_TEXT, reply_markup=ADMIN_MAIN_MENU
+                )
+                await db.updateUserStep(message.from_user.id, "Home")
+                return
+            else:
+                cohandler.update_config("bot", "sponsor_channel", message.text)
+                await message.reply("انجام شد", reply_markup=ADMIN_MAIN_MENU)
+                await db.updateUserStep(message.from_user.id, "Home")
+                return
+            
+
 async def apiMsgErrorHandler(status, query, type=None):
     if status:
         if status["message"] == "no change":
