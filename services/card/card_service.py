@@ -137,10 +137,10 @@ async def get_transaction_status(card: int, amount: int):
                 "key": admin_key,
                 "cardNumber": str(card),
                 "amount": str(amount * 10),
-            },
+            },timeout=5
         ).json()
 
-        if data:
+        if data["status"]:
             logger(__name__).info(f"Payment Success! {card} {amount} {data}")
             return True
 
@@ -156,7 +156,7 @@ async def get_card():
     admin_key = cohandler["payment"]["ghoghnoos_admin_key"]
 
     try:
-        _request = requests.post(f"{url}/getCards", json={"key": admin_key})
+        _request = requests.post(f"{url}/getCards", json={"key": admin_key},timeout=5)
         logger(__name__).info(_request.text)
 
         data = _request.json()

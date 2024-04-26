@@ -669,18 +669,26 @@ async def memmberStepHandler(client, message):
 
         elif 5000000 >= int(message.text) >= 10000:
             list_inline = []
+            all_flase = True
             # check ghoghnoos pay status
             if cohandler.config["settings"]["ghoghnoos_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💳 پرداخت با کارت به کارته خودکار",f"paywithcard:{message.text}")])
+                all_flase = False
             
             # check crypto payment status
             if cohandler.config["settings"]["crypto_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💸 پرداخت با ارز دیجیتال",f"paywithnowpay:{message.text}")])
+                all_flase = False
             
             # check crypto payment status
             if cohandler.config["settings"]["card_to_card_channel_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💳 پرداخت ب صورت کارت به کارت",f"paywithc2c_custom:{message.text}")])
+                all_flase = False
 
+            if all_flase:
+                await message.reply(CANT_BUY_TEXT)
+                return
+            
             keyboard = InlineKeyboardMarkup(list_inline)
             await message.reply(
                 ADD_BALANCE_FINAL_TEXT.format(message.text), reply_markup=keyboard
