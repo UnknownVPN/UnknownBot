@@ -36,7 +36,7 @@ is_spamming = filters.create(Isspam)
 def IsJoined(client):
     async def func(flt, _, query):
         userid = query.from_user.id
-        channel = cohandler.config["bot"]["sponsor_channel"].replace(
+        channel = cohandler.getconfig["bot"]["sponsor_channel"].replace(
             "https://t.me/", ""
         )
         if channel == False:
@@ -72,7 +72,7 @@ def IsAdmin(client):
     async def func(flt, _, query):
         try:
             userid = query.from_user.id
-            admins = cohandler.config["bot"]["admin"]
+            admins = cohandler.getconfig["bot"]["admin"]
             try:
                 for admin in admins.split(","):
                     if admin.isdigit():

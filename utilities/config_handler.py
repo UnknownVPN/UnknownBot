@@ -5,11 +5,12 @@ from logging import basicConfig, StreamHandler, INFO, Logger, getLogger
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
 
-
 class ConfigHandler:
     def __init__(self):
         self.config = configparser.ConfigParser()
+        self.config.read("config.ini", encoding="utf-8")
 
+    @property
     def getconfig(self):
         self.config.read("config.ini", encoding="utf-8")
         return self.config

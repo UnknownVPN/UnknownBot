@@ -8,7 +8,7 @@ cohandler = ConfigHandler()
 
 
 def change_service_name(name: str, flag: str):
-    custom_name = cohandler.config["bot"]["custom_name"]
+    custom_name = cohandler.getconfig["bot"]["custom_name"]
     return f"{custom_name} ({flag} {name})"
 
 
@@ -33,7 +33,7 @@ def change_config_name(config: str, name: str, flag: str):
 
 
 def config_domains_check():
-    r = requests.get(cohandler.config["settings"]["giturl"])
+    r = requests.get(cohandler.getconfig["settings"]["giturl"])
     data = r.text.splitlines()
     unknownvpn_url = data[0]
     ghoghnoos_gateway = data[1]

@@ -2,7 +2,7 @@ from enums.menu_keyboards import *
 from utilities.config_handler import ConfigHandler
 
 
-configHandler = ConfigHandler()
+cohandler = ConfigHandler()
 
 async def new_service_log(
         app,
@@ -33,4 +33,4 @@ async def new_service_log(
         payment_id
     )
 
-    await app.send_message(int(configHandler.config["bot"]["log_channel"]),text)
+    await app.send_message(int(cohandler.getconfig["bot"]["log_channel"]),text)

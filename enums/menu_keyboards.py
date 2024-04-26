@@ -19,7 +19,7 @@ BOT_SETTING = (
 💲 وضعیت خرید : {}
 📢 کانال اسپانسر : {}
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
     + """
 """
 )
@@ -62,21 +62,21 @@ BUTTON_BEFORE_JOIN = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                text=cohandler.config["bot"]["custom_name_fa"],
-                url=f"https://t.me/{cohandler.config['bot']['sponsor_channel'].replace('https://t.me/','')}",
+                text=cohandler.getconfig["bot"]["custom_name_fa"],
+                url=f"https://t.me/{cohandler.getconfig['bot']['sponsor_channel'].replace('https://t.me/','')}",
             )
         ]
     ]
 )
 
 HELLO_TEXT = (
-    f"""🐉 سلام به <a href="https://t.me/{cohandler.config['bot']['sponsor_channel'].replace('https://t.me/','')}">ربات """+cohandler.config["bot"]["custom_name_fa"]+"""</a> خوش آمدید 👋
+    f"""🐉 سلام به <a href="https://t.me/{cohandler.getconfig['bot']['sponsor_channel'].replace('https://t.me/','')}">ربات """+cohandler.getconfig["bot"]["custom_name_fa"]+"""</a> خوش آمدید 👋
 
 📌 جهت استفاده از ربات لطفا یکی از موارد زیر را انتخاب کنید
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 HELLO_BUTTONS = ReplyKeyboardMarkup(
@@ -117,12 +117,12 @@ SLOW_DOWN = """
 """
 
 
-QUESTIONS_TEXT = """<b>💡 سوالات متداول هنگام استفاده از سرویس """+cohandler.config["bot"]["custom_name_fa"]+"""</b>
+QUESTIONS_TEXT = """<b>💡 سوالات متداول هنگام استفاده از سرویس """+cohandler.getconfig["bot"]["custom_name_fa"]+"""</b>
 
-📌 """+cohandler.config["bot"]["custom_name_fa"]+""" آیپی ثابته؟ میتونم برای صرافی های ارز دیجیتال استفاده کنم؟
-🔆 بله؛ با خیال راحت میتوانید از """+cohandler.config["bot"]["custom_name_fa"]+""" استفاده کنید. به هیچ عنوان آی پی شما تغییر نخواهد کرد و تمامی سرور ها آیپی ثابت هستند.
+📌 """+cohandler.getconfig["bot"]["custom_name_fa"]+""" آیپی ثابته؟ میتونم برای صرافی های ارز دیجیتال استفاده کنم؟
+🔆 بله؛ با خیال راحت میتوانید از """+cohandler.getconfig["bot"]["custom_name_fa"]+""" استفاده کنید. به هیچ عنوان آی پی شما تغییر نخواهد کرد و تمامی سرور ها آیپی ثابت هستند.
 
-📌 اگر سرور های """+cohandler.config["bot"]["custom_name_fa"]+""" برای مدتی در وضعیت 《بروزرسانی》 قرار گیرند چه اتفاقی می افتد؟ 
+📌 اگر سرور های """+cohandler.getconfig["bot"]["custom_name_fa"]+""" برای مدتی در وضعیت 《بروزرسانی》 قرار گیرند چه اتفاقی می افتد؟ 
 🔆 مقدار مصرف شده از سرویس کاربران در زمان بروزرسانی بعد از اتمام آن به زمان تمدید کاربران اضافه خواهد شد.
 
 📌 ترافیک هر سرویس چقدره؟
@@ -131,20 +131,20 @@ QUESTIONS_TEXT = """<b>💡 سوالات متداول هنگام استفاده 
 📌 اگه به یک سرویس بیشتر از حد مجاز متصل شویم چه اتفاقی می افتد؟
 🔆 در صورت اتصال بیشتر از میزان مجاز کانکشن خریداری شده، سرویس شما برای 6 ساعت مسدود خواهد شد.
 
-📌 """+cohandler.config["bot"]["custom_name_fa"]+""" از چه نوع سرویسی استفاده می کند؟
-🔆 """+cohandler.config["bot"]["custom_name_fa"]+""" از Vmess/Vless استفاده می کند و شما می توانید مدیریت کامل بر روی سرویس خریداری شده خود داشته باشید.
+📌 """+cohandler.getconfig["bot"]["custom_name_fa"]+""" از چه نوع سرویسی استفاده می کند؟
+🔆 """+cohandler.getconfig["bot"]["custom_name_fa"]+""" از Vmess/Vless استفاده می کند و شما می توانید مدیریت کامل بر روی سرویس خریداری شده خود داشته باشید.
 
-📌 """+cohandler.config["bot"]["custom_name_fa"]+""" از چه کشور هایی سرویس ارائه می دهد؟
+📌 """+cohandler.getconfig["bot"]["custom_name_fa"]+""" از چه کشور هایی سرویس ارائه می دهد؟
 🔆 ما کشور هایی که کاربران درخواست می کنند را در کوتاه ترین زمان ممکن به لیست سرور ها اضافه می کنیم. برای درخواست سرور در کشور مورد نظر با پشتیبانی در ارتباط باشید.
 
 
-📌 چطور باید از """+cohandler.config["bot"]["custom_name_fa"]+""" استفاده کنم؟
+📌 چطور باید از """+cohandler.getconfig["bot"]["custom_name_fa"]+""" استفاده کنم؟
 🔆 شما میتوانید از برنامه های V2rayNG - V2rayN - Matsuri - Nekoray برنامه هایی که از لینک vmess/vless پشتیبانی می کنند استفاده کنید و همچنین می توانید آموزش های اتصال و برنامه های مورد نیاز را در کانال تلگرامی ما دنبال کنید.
 
-📌 """+cohandler.config["bot"]["custom_name_fa"]+""" سرعت اینترنت را بالا می برد؟
+📌 """+cohandler.getconfig["bot"]["custom_name_fa"]+""" سرعت اینترنت را بالا می برد؟
 🔆 سرویس ما همه اپراتور ها را برای افزایش سرعت پشتیبانی نمی کند ولی بصورت کلی برای بعضی از اپراتور ها باعث افزایش سرعت می شود.
 
-📌 آیا از """+cohandler.config["bot"]["custom_name_fa"]+""" برای بازی های آنلاین هم می شود استفاده کرد؟
+📌 آیا از """+cohandler.getconfig["bot"]["custom_name_fa"]+""" برای بازی های آنلاین هم می شود استفاده کرد؟
 🔆 بله؛ تیم ما در تلاش است که همه بازی هارا برای سرویس بهینه سازی کند ولی تضمین برای کارکرد قطعی نمی شود.
 
 📌 کدام لوکیشن ها سرعت و پینگ بهتری دارد؟
@@ -199,7 +199,7 @@ HOWCONNECT_TEXT = (
     """📌 شما میتوانید برای راهنمای اتصال به سرویس کانال رسمی مارا دنبال کنید و همچنین از دکمه های زیر میتوانید برنامه های مورد نیاز هر سیستم عامل را دانلود کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 HOWCONNECT_BUTTONS = InlineKeyboardMarkup(
@@ -226,13 +226,13 @@ ANDROID_TEXT = (
 📌 جهت اتصال به پروتکل های vmess/vlessمیتوانید از برنامه های زیر استفاده کنید
 
 🔸 <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">V2rayNg</a> - <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">Clash</a>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 WINDOWS_TEXT = (
@@ -242,14 +242,14 @@ WINDOWS_TEXT = (
 
 
 🔸 <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">Clash Verge</a> - <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">Netch</a>
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MAC_TEXT = (
@@ -259,16 +259,16 @@ MAC_TEXT = (
 
 
 🔸 <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">ShadowRocket</a> - <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">Clash Verge</a> - <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">OneClick</a>
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 IOS_TEXT = (
@@ -278,14 +278,14 @@ IOS_TEXT = (
 
 
 🔹<a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">NapsternetV</a> - <a href="https://t.me/"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
     + """">ShadowRocket</a>
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 LINUX_TEXT = (
@@ -295,7 +295,7 @@ LINUX_TEXT = (
 🔸 Clash Verge <a href="https://github.com/zzzgydi/clash-verge/releases/download/v1.0.5/clash-verge_1.0.5_amd64.AppImage">Download</a>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SUPPORT_TEXT = (
@@ -303,14 +303,14 @@ SUPPORT_TEXT = (
 
 🔗 برای ارتباط با تیم پشتیبانی، به آیدی زیر پیام دهید:
 📌 @"""
-    + cohandler.config["bot"]["sponsor_admin"]
+    + cohandler.getconfig["bot"]["sponsor_admin"]
     + """
 
 ⚠️ قبل از ارسال پیام، لطفاً بخش [💡 سوالات متداول] را بررسی کنید تا سریع‌تر به پاسخ سوال خود برسید.
 
 🔍 برای اخبار و اطلاعات بیشتر، به کانال ما بپیوندید:
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_channel"]
+    + cohandler.getconfig["bot"]["sponsor_channel"]
 )
 
 REFERRAL_TEXT = (
@@ -333,7 +333,7 @@ REFERRAL_TEXT = (
 💎 جهت خرید میتوانید به ربات ما مراجعه کنید 👇
 
 🆔 <a href="{}">@"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
     + """</a>"""
 )
 
@@ -356,7 +356,7 @@ REFFERAL_HINT = (
 💎 جمع مبلغ هدیه: {} تومان
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 REQUEST_PHONE_TEXT = (
@@ -365,7 +365,7 @@ REQUEST_PHONE_TEXT = (
 🐉 به این مظور باید شماره خود را توسط دکمه زیر با ما به اشتراک بگذارید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 REQUEST_PHONE_BUTTONS = ReplyKeyboardMarkup(
@@ -376,26 +376,26 @@ VERIFIED_PHONE_NUMBER_TEXT = (
     """✅ شماره شما با موفقیت تایید شد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INVALID_PHONE_NUMBER_TEXT = (
     """❌ شماره ارسالی باید برای ایران باشد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ERROR_PHONE_NUMBER_TEXT = (
     """❌ لطفا از دکمه زیر برای ارسال شماره استفاده کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 PRICE_PRODUCTS_TEXT = (
     f"""📣 تعرفه‌های سرویس‌های """
-    + cohandler.config["bot"]["custom_name"]
+    + cohandler.getconfig["bot"]["custom_name"]
     + f""" 🚀
 
 <b>⏰ سرویس های یک ماهه</b>
@@ -414,11 +414,11 @@ PRICE_PRODUCTS_TEXT = (
 
 
 ☎️ در صورت هرگونه سوال یا نیاز به راهنمایی، با ما تماس بگیرید: @"""
-    + cohandler.config["bot"]["sponsor_admin"]
+    + cohandler.getconfig["bot"]["sponsor_admin"]
     + """
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 RULES_TEXT = (
@@ -439,7 +439,7 @@ RULES_TEXT = (
 📌 در صورتی سوال یا ابهامی دارید میتوانید ابتدا بخش سوالات متداول را مطالعه کنید و در صورت مشکل با پشتیبانی در ارتباط باشید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 RULES_BUTTONS = InlineKeyboardMarkup(
@@ -456,7 +456,7 @@ CANT_BUY_TEXT = (
     """❌ بخش خرید موقتا غیرفعال می باشد لطفا بعدا تلاش کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -468,7 +468,7 @@ SERVERS_TEXT = (
 📌 بعد از خرید میتوانید لوکیشن خود را بدون محدودیت و به صورت رایگان تغییر دهید و همچنین جهت مشاهده قیمت ها میتوانید به بخش تعرفه ها مراجعه کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVER_DISABLED_RAW = """❌ خرید از این لوکیشن در حال حاضر غیرفعال میباشد"""
@@ -477,21 +477,21 @@ TIME_SERVICE_TEXT = (
     """🌿 لطفا مدت زمان سرویس را مشخص کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 USERS_COUNT_TEXT = (
     """🌿 لطفا تعداد کاربر سرویس را مشخص کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SIZES_TEXT = (
     """🌿 لطفا حجم سرویس را مخشص کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 FINAL_STAGE_TEXT = (
@@ -508,14 +508,14 @@ FINAL_STAGE_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHOICE_COIN_TEXT = (
     """🔵 لطفا یکی از ارز های زیر را برای پرداخت انتخاب کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ERROR_LOW_VALUE_RAW = """❌ پرداخت با این ارز در حال حاضر در دسترس نیست"""
@@ -550,7 +550,7 @@ CRYPTO_PAY_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -563,7 +563,7 @@ BUY_REPORT = (
 💾 حجم سرویس: {} گیگ (مصرف منصفانه)
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SUCCESSFULL_BUY = (
@@ -579,14 +579,14 @@ SUCCESSFULL_BUY = (
 🧑‍🦯 شما میتوانید شیوه اتصال را در بخش راهنما مطالعه کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 REF_BUY_SUCESSS = (
     """🎁 مبلغ {} تومان جهت خرید یکی از زیر مجموعه های شما به کیف پول شما اضافه شد 😃
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 RIAL_PAY_TEXT = (
@@ -605,7 +605,7 @@ RIAL_PAY_TEXT = (
 ‏🇮🇷 پرداخت فقط با آیپی ایران امکان پذیر است، اگر vpn شما روشن است لطفا خاموش کنید و مجددا وارد درگاه شوید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 EXPIRED_MESSAGE_CRYPTO = (
@@ -614,7 +614,7 @@ EXPIRED_MESSAGE_CRYPTO = (
 📌 شناسه پرداخت : <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 BALANCE_MESSAGE = (
@@ -622,7 +622,7 @@ BALANCE_MESSAGE = (
 📌 اعتبار کیف پول شما: {} تومان
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 BALANCE_BUTTONS = InlineKeyboardMarkup(
@@ -639,7 +639,7 @@ ADD_BALANCE_TEXT = (
 🌿 مثال: 5350
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ADD_BALANCE_CANCEL_BUTTON = ReplyKeyboardMarkup(
@@ -652,7 +652,7 @@ CANCEL_ADD_BALANCE_TEXT = (
 📌 جهت استفاده از ربات لطفا یکی از موارد زیر را انتخاب کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INVALID_ADD_BALANCE_VALUE_MESSAGE = (
@@ -661,7 +661,7 @@ INVALID_ADD_BALANCE_VALUE_MESSAGE = (
 ⚠️ مبلغ ارسالی باید بین 10000 تا 5000000 تومان باشد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 LAST_NUMBER_ERROR_TEXT = (
@@ -672,14 +672,14 @@ LAST_NUMBER_ERROR_TEXT = (
 🌿 مثال: 5350
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ADD_BALANCE_FINAL_TEXT = (
     """✅ شما میتوانید مبلغ {} تومان را به صورت ریال یا رمز ارز پرداخت کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -700,7 +700,7 @@ ADD_RIAL_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TRANSACTION_RECEIVED_TEXT = (
@@ -711,7 +711,7 @@ TRANSACTION_RECEIVED_TEXT = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TRANSACTION_FAILED_TEXT = (
@@ -720,7 +720,7 @@ TRANSACTION_FAILED_TEXT = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TRANSACTION_PARTIALLY_PAID = (
@@ -729,7 +729,7 @@ TRANSACTION_PARTIALLY_PAID = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -741,7 +741,7 @@ TRANSACTION_REFUNDED_TEXT = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SUCCESSFULL_ADD_BALANCE = (
@@ -750,21 +750,21 @@ SUCCESSFULL_ADD_BALANCE = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 EXPIRED_CARD_PAYMENT = (
     """⚠️ زمان کارت به کارت کردن شما به پایان رسید!
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
 ADDMOREUSERFAILED = (
     """❌ مشکلی در خرید کاربر اضافه با  رخ داده است بعدا دوباره تلاش کنید
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -777,7 +777,7 @@ BALANCE_EXCEPT_BUY = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 BALANCE_EXCEPT_BUY2 = (
@@ -786,7 +786,7 @@ BALANCE_EXCEPT_BUY2 = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -797,7 +797,7 @@ BALANCE_EXCEPT_BUY3 = (
 📌 شناسه پرداخت: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -812,28 +812,28 @@ MANAGE_SERVICES_TEXT = (
     """🐉 جهت مدیریت سرویس، سرویس مورد نظر را انتخاب کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NO_SERVICES_TEXT = (
     """❌ شما در حال حاضر هیچ سرویس فعالی ندارید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 GOT_FREE_BEFORE_TEXT = (
     """❌ کابر گرامی شما قبلا اکانت رایگان را فعال کرده اید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NO_FREE_SERVICE_TEXT = (
     """❌ در حال حاضر هیچ سرور رایگانی وجود ندارد. لطفا بعدا تلاش کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 FREE_SERVICE_ACTIVATED_TEXT = (
@@ -844,14 +844,14 @@ FREE_SERVICE_ACTIVATED_TEXT = (
 ⭐️ شما میتوانید شیوه اتصال را در بخش راهنما مطالعه کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 FREE_SERVICES_FULL_TEXT = (
     """❌ در حال حاضر ظرفیت سرورهای رایگان پر شده است لطفا بعدا تلاش کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_INFO_TEXT2 = (
@@ -865,7 +865,7 @@ SERVICE_INFO_TEXT2 = (
 📌 شما میتوانید با استفاده از دکمه های زیر سرویس خود را مدیریت کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_INFO_TEXT = (
@@ -878,7 +878,7 @@ SERVICE_INFO_TEXT = (
 📌 شما میتوانید با استفاده از دکمه های زیر سرویس خود را مدیریت کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_SERVICE_NAME_TEXT = (
@@ -889,7 +889,7 @@ CHANGE_SERVICE_NAME_TEXT = (
 ⚠️ توجه: نام ارسالی فقط باید اعداد و حروف انگلیسی باشد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_SERVICE_BACK = ReplyKeyboardMarkup(
@@ -908,7 +908,7 @@ SHORT_NAME_TEXT = (
     """❌ نام ارسالی باید بین 5 تا 16 کاراکتر باشد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 BAD_NAME_TEXT = (
@@ -917,14 +917,14 @@ BAD_NAME_TEXT = (
 📌 استفاده از - مجاز است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 USED_NAME_TEXT = (
     """❌ این نام قبلا استفاده شده است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -932,7 +932,7 @@ CHNAGE_NAME_FAST = (
     """❌تغییر نام هر 3 دقیقه  یکبارامکان پذیر است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGED_NAME_SUCCESS_TEXT = (
@@ -941,7 +941,7 @@ CHANGED_NAME_SUCCESS_TEXT = (
 📌 لینک اتصال تغییر کرده است، شما میتوانید لینک جدید را دریافت کنید یا از لینک قدیمی استفاده کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 GET_SERVICE_INFO_TEXT = (
@@ -963,7 +963,7 @@ GET_SERVICE_INFO_TEXT = (
 ⚠️ در صورت مغایرت در حجم ده دقیقه تا نیم ساعت دیگر دوباره بررسی کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 GET_SERVICE_INFO_TEXT_SELLERS = """🌿 نام سرویس: {}
@@ -988,7 +988,7 @@ NIMBAHA_LINK_TEXT = (
 🔗 Link (IP): <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NIMBAHA_LINK_VLESS_TEXT = (
@@ -999,7 +999,7 @@ NIMBAHA_LINK_VLESS_TEXT = (
 🔗 Nekoray Link (IP): <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 DIRECT_LINK_WARNING = """⛔️ در صورت اختلال در اینترنت یا اینترانت لینک مستقیم وصل نمیشود لذا از اینک نیمبها استفاده کنید"""
@@ -1012,7 +1012,7 @@ DIRECT_LINK_TEXT = (
 ⚠️ توجه:  این لینک بدون نیم بها شدن بصورت مستقیم به سرور خارج از کشور است، مصرف شما با این لینک تمام بها میشود ولی ممکن است از سرعت بهتری برخوردار شوید!
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 DIRECT_LINK_VLESS_TEXT = (
@@ -1025,7 +1025,7 @@ DIRECT_LINK_VLESS_TEXT = (
 ⚠️ توجه:  این لینک بدون نیم بها شدن بصورت مستقیم به سرور خارج از کشور است، مصرف شما با این لینک تمام بها میشود ولی ممکن است از سرعت بهتری برخوردار شوید!
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NO_NIMBAHA_LINK_TEXT = """❌ در حال حاضر لینک نیم بها برای این سرویس در دسترس نیست"""
@@ -1036,14 +1036,14 @@ CONFIRM_CHANGE_LINK_TEXT = (
 ⚠️ بعد از تغییر لینک اتصال تمامی افراد متصل قطع میشوند و لینک قبلی غیرفعال میشود
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGED_LINK_SUCCESSFULLY_TEXT = (
     """✅ لینک اتصال با موفقیت تغییر کرد، شما میتوانید از دکمه زیر برای دریافت لینک جدید اقدام کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MORE_USER_TEXT = (
@@ -1052,7 +1052,7 @@ MORE_USER_TEXT = (
 ⚠️ توجه: بعد از تمدید سرویس تعداد کاربر اضافی خریداری شده 0 میشود و تعداد کاربر اصلی پلن انتخابی تنظیم میشود
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MORE_USER_FINAL_TEXT = (
@@ -1067,7 +1067,7 @@ MORE_USER_FINAL_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SUCCESSFULL_ADD_MORE_USER_TEXT = (
@@ -1075,7 +1075,7 @@ SUCCESSFULL_ADD_MORE_USER_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_LOCATION_TEXT = (
@@ -1083,7 +1083,7 @@ CHANGE_LOCATION_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CONFIRM_CHANGE_LOCATION_TEXT = (
@@ -1093,7 +1093,7 @@ CONFIRM_CHANGE_LOCATION_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ALREADY_THIS_LOCATION_TEXT = """❌ در حال حاضر لوکیشن شما روی این سرور میباشد"""
@@ -1105,7 +1105,7 @@ LOCATION_CHANGED_SUCCESSFULLY_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 AUTO_REPAY_TEXT = (
@@ -1115,7 +1115,7 @@ AUTO_REPAY_TEXT = (
 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SHOW_ALERTS_TEXT = (
@@ -1124,7 +1124,7 @@ SHOW_ALERTS_TEXT = (
 ⚠️ توجه: غیرفعال سازی اعلان های اتصال فقط برای این سرویس انجام میشود
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1132,7 +1132,7 @@ CHANGE_BUY_STATUS = (
     """📣 شما میتوانید با دکمه های زیر وضعیت  خرید را فعال یا غیرفعال کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1146,7 +1146,7 @@ SHOW_SUBSCRIPTION_LINK = (
 🔗 Link: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SHOW_SUBSCRIPTION_WS_VMESS_LINK = (
@@ -1162,7 +1162,7 @@ SHOW_SUBSCRIPTION_WS_VMESS_LINK = (
 🔗 Link: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SHOW_SUBSCRIPTION2_LINK = (
@@ -1172,7 +1172,7 @@ SHOW_SUBSCRIPTION2_LINK = (
 🔗 Link: <code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_SUBSCRIPTION_TEXT = (
@@ -1181,14 +1181,14 @@ CHANGE_SUBSCRIPTION_TEXT = (
 ⚠️ بعد از تغییر لینک اشتراک قبلی منقضی میشود
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_SUBSCRIPTION_SUCCESSFULL_TEXT = (
     """✅ لینک اشتراک سرویس با موفقیت تغییر کرد، شما میتوانید از دکمه زیر برای دریافت لینک جدید اقدام کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_PROTOCOL_TEXT = (
@@ -1197,7 +1197,7 @@ CHANGE_PROTOCOL_TEXT = (
 📌 شما میتوانید آموزش اتصال به هر پروتکل را در بخش راهنمای اتصال یا در چنل تلگرام مشاهده کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_PROTOCOL_SUCCESSFULL_TEXT = (
@@ -1206,7 +1206,7 @@ CHANGE_PROTOCOL_SUCCESSFULL_TEXT = (
 📌 لطفا لینک اتصال خود را برای این پروتکل از طریق دکمه های زیر دریافت کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INCREASE_SIZE_TEXT = (
@@ -1217,7 +1217,7 @@ INCREASE_SIZE_TEXT = (
 ⚠️ توجه: مقدار عدد ارسالی 'گیگ' می باشد و هر گیگ 3000 تومان است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MAIN_MENU_TEXT = (
@@ -1226,7 +1226,7 @@ MAIN_MENU_TEXT = (
 📌 جهت استفاده از ربات لطفا یکی از موارد زیر را انتخاب کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INVALID_SIZE_ERROR = (
@@ -1235,7 +1235,7 @@ INVALID_SIZE_ERROR = (
 📌 مثال: 25
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INCREASE_SIZE_RANGE_ERROR_TEXT = (
@@ -1244,7 +1244,7 @@ INCREASE_SIZE_RANGE_ERROR_TEXT = (
 📌 حجم ارسالی باید بین 1 تا 600 باشد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHOOSE_SERVICE_ADD_SIZE_TEXT = (
@@ -1253,7 +1253,7 @@ CHOOSE_SERVICE_ADD_SIZE_TEXT = (
 📌 حجم اضافه: {} گیگ
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1269,14 +1269,14 @@ FINAL_ADD_SIZE_TEXT = (
 ⭐️ شما میتوانید به مراحل قبل برگردید و سرویس انتخابی را تغییر دهید یا از همین مرحله خرید خود را تایید کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SUCCESSFULL_ADD_SIZE_USER_TEXT = (
     """✅ حجم اضافه با موفقیت به سرویس شما اعمال شد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NOT_AVAILABLE_FOR_FREE_SERVICES = """❌ این قابلیت برای سرویس های رایگان در دسترس نیست"""
@@ -1285,7 +1285,7 @@ QRCODE_STRING = (
     """<code>{}</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 EXPIRING_SERVICE_TEXT = (
@@ -1296,35 +1296,35 @@ EXPIRING_SERVICE_TEXT = (
 📌 اگر تا 3 روز بعد از پایان سرویس اقدام به تمدید آن نفرمایید سرویس بطور کامل حذف می شود.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 EXPIRED_SERVICE_TEXT = (
     """⭕️ کاربر گرامی مهلت سرویس {} تمام شده است. اگر تا 3 روز اینده سرویس تمدید نشود برای همیشه حذف خواهد شد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 EXPIRING_SERVICE_FREE_TEXT = (
     """⏳ کاربر گرامی تنها {} از سرویس رایگان {} باقی مانده است. در صورت تمایل از بخش "خرید سرویس" میتوانید سرویس جدید خریداری کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 EXPIRED_SERVICE_FREE_TEXT = (
     """⭕️ کاربر گرامی مهلت سرویس رایگان {} تمام شده است. 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NO_BALANCE_FOR_AUTO_PAY_TEXT = (
     """⭕️ کاربر گرامی کیف پول شما مبلغ کافی برای تمدید خودکار سرویس {} ندارد. لذا سرویس شما تا تمدید سرویس غیرفعال میشود. 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1333,7 +1333,7 @@ NO_BALANCE_FOR_MORE_USER = (
 ندارد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1341,14 +1341,14 @@ SUCCESSFULL_AUTO_PAY_TEXT = (
     """✅ سرویس {} به طور خودکار تمدید شد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 DELETED_SERVICE_TEXT = (
     """⭕️ سرویس {} به علت عدم تمدید حذف شد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CANT_EXTENSION_TEXT = (
@@ -1366,7 +1366,7 @@ EXTENSION_SERVICE_TEXT = (
 ⭐️ شما میتوانید به مراحل قبل برگردید و سرویس انتخابی را تغییر دهید یا از همین مرحله خرید خود را تایید کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1374,7 +1374,7 @@ SUCCESSFULL_EXTENSION_TEXT = (
     """✅ سرویس {} تمدید شد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_EXPIRED_ERROR_TEXT = (
@@ -1386,14 +1386,14 @@ SERVICE_SIZE_85_TEXT = (
     """⚠️ کاربر گرامی شما 85 درصد از حجم سرویس {} را مصرف کرده اید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_SIZE_99_TEXT = (
     """⚠️ کاربر گرامی شما 99 درصد از حجم سرویس {} را مصرف کرده اید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_SIZE_ENDED_TEXT = (
@@ -1402,7 +1402,7 @@ SERVICE_SIZE_ENDED_TEXT = (
 ♾ حجم اضافه > مقدار حجمی که میخواید > انتخاب سرویس > پرداخت از کیف پول 
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_MORE_CONNS_WARN_TEXT = (
@@ -1413,21 +1413,21 @@ SERVICE_MORE_CONNS_WARN_TEXT = (
 ⚠️ در صورتی که تعداد کانکشن غیر مجاز شما به 3 بار برسد، سرویس شما برای 6 ساعت مسدود خواهد شد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_BANNED_TEXT = (
     """🚫 سرویس {} به علت تعداد کانکشن بیش از حد به مدت 6 ساعت مسدود میشود.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_UNBANNED_TEXT = (
     """⚠️ سرویس {} آن بن شد. توجه کنید در صورت تکرار کانکشن بیش از حد دوباره سرویس شما به مدت 6 ساعت مسدود خواهد شد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_BANNED_RAW_TEXT = """❌ این سرویس مسدود شده است"""
@@ -1436,7 +1436,7 @@ NO_CONS_TO_SERVICE = (
     """❌ اتصالی به سرویس وجود ندارد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_CONNECTIONS_TEXT = (
@@ -1446,7 +1446,7 @@ SERVICE_CONNECTIONS_TEXT = (
 ⚠️ توجه: لیست بالا آخرین افراد متصل به سرویس را نشان میدهد و به معنای افرادی که همینک به سرویس متصل هستند نیست
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MESSAGE_EXPIRED_TEXT = """❌ این پیام منقضی شده است لطفا دوباره به این بخش مراجعه کنید"""
@@ -1462,21 +1462,21 @@ SPAM_ALERT_TEXT = (
 ⛔️ اگر تعداد اخطار های شما به حداکثر رسید از ربات بن میشوید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SPAM_BANNED_TEXT = (
     """🚫 حساب شما به علت اسپم بیش از حد مسدود شده است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 FREE_SERVICE_DISABLED_TEXT = (
     """❌ بخش سرویس رایگان توسط مدیریت غیرفعال شده است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ALERT_CONNECTION_TEXT = (
@@ -1487,7 +1487,7 @@ ALERT_CONNECTION_TEXT = (
 ⚠️ توجه: تکرار پیام اتصال برای یک آیپی به معنی اختلال در اینترنت فرد است شما میتوانید در بخش سرویس ها هشدار های اتصال را غیرفعال کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_LOCATION_FAST_TEXT = """❌ تغییر لوکیشن هر 5 دقیقه یکبار امکان پذیر است"""
@@ -1514,7 +1514,7 @@ FREE_SERVICE_SIZE_ENDED_TEXT = (
     """⚠️ حجم سرویس رایگان {} تمام شده است.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 PAY_CARD_TEXT = """🏖 کاربر گرامی لطفا مبلغ {} تومان را به بصورت دقیق به شماره کارت زیر واریز کنید.
@@ -1527,9 +1527,9 @@ PAY_CARD_TEXT = """🏖 کاربر گرامی لطفا مبلغ {} تومان ر
 ✅ پرداخت شما حداکثر تا 5 دقیقه بعد از ارسال وجه تایید خواهد شد
 
 جهت ارتباط با پشتیبانی 👇
-@"""+ cohandler.config["bot"]["sponsor_admin"] + """ 
+@"""+ cohandler.getconfig["bot"]["sponsor_admin"] + """ 
 
-🆔 @""" + cohandler.config["bot"]["sponsor_bot"]
+🆔 @""" + cohandler.getconfig["bot"]["sponsor_bot"]
 
 PAY_CARD_BUTTONS = ReplyKeyboardMarkup(
     [[KeyboardButton(text="🔙 بازگشت")]], resize_keyboard=True
@@ -1539,7 +1539,7 @@ ENTER_CARD_TEXT = (
     """✍️ لطفا شماره کارت مبدا را بدون فاصله وارد کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INVALID_CARD_NUMBER = """❌ شماره کارت وارد شده اشتباه است"""
@@ -1548,14 +1548,14 @@ TIME_TO_PAY_ENDED = (
     """❌ مهلت شما برای واریز وجه به اتمام رسید. لطفا دیگر وجهی ارسال نکنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CARD_PAYMENT_CREDITED = (
     """✅ کیف پول شما شارژ شد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 
@@ -1577,14 +1577,14 @@ CURRENT_EMAIL_TEXT = (
 📝 برای تغییر ایمیل فعلی ، ایمیل جدید را وارد کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ENTER_EMAIL_TEXT = (
     """📨  لطفا ادرس ایمیل خود را وارد کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INVALID_EMAIL_TEXT = """❌ فرمت ایمیل اشتباه است"""
@@ -1597,7 +1597,7 @@ EMAIL_SUBMITED_TEXT = (
     """✅ ایمیل شما ثبت شد
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ONE_SERVICE_REQUIRED_TEXT = (
@@ -1612,7 +1612,7 @@ MAINTENANCE_TEXT = (
     """🛠 ربات در حال تعمیرات و نگهداری میباشد لطفا بعدا تلاش کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MAINTENANCE_RAW_TEXT = """🛠 ربات در حال تعمیرات و نگهداری میباشد لطفا بعدا تلاش کنید."""
@@ -1628,7 +1628,7 @@ CHANGE_TYPE_TEXT = (
 ⚠️ با تغییر نوع کانکشن به ws به احتمال 30 تا 95 درصد سرعت شما کمتر ولی کانکشن استیبل تر میشود.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CHANGE_TYPE_SUCCESSFULL_TEXT = (
@@ -1637,7 +1637,7 @@ CHANGE_TYPE_SUCCESSFULL_TEXT = (
 📌 لطفا لینک اتصال خود را برای این پروتکل از طریق دکمه های زیر دریافت کنید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MAINTENANCE_SERVER_TEXT = """⚠️ کاربر گرامی سرور این سرویس در حال تعمیر میباشد"""
@@ -1650,7 +1650,7 @@ LICENSE_BOT_TEXT = (
 ⚠️ علامت 🟢 به این معناست که یوزر لایسنس را در بات نمایندگی وارد کرده است و علامت 🔴 به این معناست که هنوز استفاده نشده است.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 LICENSE_BOT_USED_TEXT = (
@@ -1664,7 +1664,7 @@ LICENSE_BOT_USED_TEXT = (
 ⚠️ علامت 🟢 به این معناست که یوزر لایسنس را در بات نمایندگی وارد کرده است و علامت 🔴 به این معناست که هنوز استفاده نشده است.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 LICENSE_NOT_FOUND = """❌ لایسنس یافت نشد"""
@@ -1707,7 +1707,7 @@ MANUAL_TEXT = (
 اول بهم بگو که اندروید هستی و یا Ios
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ANDROID_MANUAL_TEXT = (
@@ -1720,7 +1720,7 @@ ANDROID_MANUAL_TEXT = (
 یک بار ببرید موبایلتون رو حالت هواپیما مجدد در بیارید  اگر نشد یک بار اینترنتتون رو ببرید حالت 2g مجدد ببرید 4g و تست کنید و اینکه لینک نیم بها و مستقیم جفتشو داشته باشید هر کدوم پایداری بهتری داشت براتون با همون متصل بمونید
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 IOS_MANUAL_TEXT = (
@@ -1752,7 +1752,7 @@ Reset Network Setting
 و ریست میکنید تنظیمات اینترنت شما مجدد پیکربندی میشه
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 MANUAL_BUTTONS = InlineKeyboardMarkup(
@@ -1773,14 +1773,14 @@ APIKEY_TEXT = (
 🔗 <a href="https://documenter.getpostman.com/view/25344455905/2s5548ZDSdR3q#intro">Documentation</a>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 LINK_CHANGED_TEXT = (
     """⚠️<b> لینک سرویس {} (نیمبها و مستقیم) توسط مدیریت تغییر یافته است لطفا اقدام به دریافت لینک جدید نمایید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
     + """</b>"""
 )
 
@@ -1788,14 +1788,14 @@ DELETE_SERVICE_PROMPT_TEXT = (
     """⚠️ آیا از حذف این سرویس اطمینان دارید؟
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 SERVICE_WILL_BE_DELETED_TEXT = (
     """✔️ این سرویس تا ده دقیقه دیگر حذف خواهد شد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TRANSFER_BALANCE_TEXT = (
@@ -1806,7 +1806,7 @@ TRANSFER_BALANCE_TEXT = (
 مقداری که میخواهید منتقل کنید را به تومان وارد کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CANCEL_TRANSFER_BUTTONS = ReplyKeyboardMarkup(
@@ -1818,14 +1818,14 @@ INVALID_VALUE_TEXT = (
     """❌ عدد ارسالی اشتباه میباشد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NO_BALANCE_TEXT = (
     """❌ موجودی شما کافی نمیباشد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TRANSFER_USERID_TEXT = (
@@ -1834,49 +1834,49 @@ TRANSFER_USERID_TEXT = (
 👈 درصورتی که درخواست انتقال {} تومان مورد تاییدتان است، شناسه کاربری مقصد را ارسال کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 INVALID_USERID_TEXT = (
     """⚠️ شناسه کاربری مقصد نامعتبر است و یا انتقال موجودی به کاربر موردنظر ممکن نیست.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 COINS_TRANSFERED_TEXT = (
     """<code>✅ مقدار {} تومان در تاریخ {} ساعت {} با موفقیت به کاربر {} انتقال داده شد.</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 ALARM_COINS_RECEIVED_TEXT = (
     """<code>✅ مقدار {} تومان در تاریخ {} ساعت {} با موفقیت از کاربر {} دریافت شد.</code>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TRANSFER_NOT_AVAILABLE_TEXT = (
     """❌ این بخش فعلا در دسترس نمیباشد.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CANT_TRANSFER_SELF_TEXT = (
     """❌ نمیتوانید به خودتان موجودی منتقل کنید.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TIME_INCREASED_TEXT = (
     """🔆 مدت زمان سرویس {} به مدت {} روز توسط مدیریت افزایش یافته است.
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 TIME_INCREASED_NOROZ_TEXT = (
@@ -1887,7 +1887,7 @@ TIME_INCREASED_NOROZ_TEXT = (
 پیشاپیش عید نوروز مبارک 💜
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 NIMBAHA_EXISTS_TEXT = """❌ در حال حاضر لینک نیم بها برای این سرویس تنظیم شده است"""
@@ -1909,7 +1909,7 @@ THIS_SECTION_DISACTIVATED = (
     """⚠️ این بخش توسط مدیریت غیرفعال شده است
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CONNECTION_TYPE_DISABLED = """⚠️ این نوع کانکشن توسط مدیریت غیرفعال شده است"""
@@ -1928,12 +1928,12 @@ HISTORY_IPS_LINK_TEXT = (
 <a href="{}">🔗 تاریخچه افراد متصل</a>
 
 🆔 @"""
-    + cohandler.config["bot"]["sponsor_bot"]
+    + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 CARD_IN_USE = """❌این کارت با اکانت دیگری در حال استفاده میباشد. شما نمی‌توانید از یک کارت برای دو پرداخت همزمان استفاده کنید. لطفا پس از زمان مشخص شده تراکنش دوباره امتحان کنید.
 
-🆔 @"""+ cohandler.config["bot"]["sponsor_bot"]
+🆔 @"""+ cohandler.getconfig["bot"]["sponsor_bot"]
 
 NEW_SERVICE_LOG = """💳 Buy Service with {}
 

@@ -31,8 +31,8 @@ async def backup_process(stop_event):
     while not stop_event.is_set():
         backup()
         await _send_file_tl(
-            cohandler.config["bot"]["bot_token"],
-            cohandler.config["bot"]["backup_channel"],
+            cohandler.getconfig["bot"]["bot_token"],
+            cohandler.getconfig["bot"]["backup_channel"],
             "backup.gz"
         )
         await asyncio.sleep(300)

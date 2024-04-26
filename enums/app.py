@@ -6,7 +6,7 @@ cohandler = ConfigHandler()
 
 app = Client(
     "unknownvpn",
-    cohandler.config["bot"]["api_id"],
-    cohandler.config["bot"]["api_hash"],
-    bot_token=cohandler.config["bot"]["bot_token"],
+    cohandler.getconfig["bot"]["api_id"],
+    cohandler.getconfig["bot"]["api_hash"],
+    bot_token=cohandler.getconfig["bot"]["bot_token"],
 )

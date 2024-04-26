@@ -9,7 +9,7 @@ cohandler = ConfigHandler()
 
 class Api_Request_handler:
     def __init__(self) -> None:
-        self.url = cohandler.config["payment"]["unknow_api_url"]
+        self.url = cohandler.getconfig["payment"]["unknow_api_url"]
 
     async def send_requets(self, url, payload, headers):
         async with aiohttp.ClientSession() as session:
@@ -37,13 +37,13 @@ class Api_Request_handler:
     async def GetPrices(self):
         url = f"{self.url}/{endpoints.GetPrices}"
         payload = {}
-        headers = {"X-API-KEY": cohandler.config["bot"]["unknow_api_token"]}
+        headers = {"X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"]}
         return await self.send_requets(url, payload, headers)
 
     async def GetServers(self):
         url = f"{self.url}/{endpoints.GetServers}"
         payload = {}
-        headers = {"X-API-KEY": cohandler.config["bot"]["unknow_api_token"]}
+        headers = {"X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"]}
         return await self.send_requets(url, payload, headers)
 
     async def ChangeServiceProtocol(self, license: str, protocol):
@@ -67,7 +67,7 @@ class Api_Request_handler:
         url = f"{self.url}/{endpoints.Buymoretraffic}"
         payload = json.dumps({"service_id": service_id, "size": size})
         headers = {
-            "X-API-KEY": cohandler.config["bot"]["unknow_api_token"],
+            "X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"],
             "Content-Type": "application/json",
         }
         return await self.sendPostRequests(url, payload, headers)
@@ -83,7 +83,7 @@ class Api_Request_handler:
         url = f"{self.url}/{endpoints.ChangeName}"
         payload = json.dumps({"service_id": serviceId, "name": name})
         headers = {
-            "X-API-KEY": cohandler.config["bot"]["unknow_api_token"],
+            "X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"],
             "Content-Type": "application/json",
         }
 
@@ -93,7 +93,7 @@ class Api_Request_handler:
         url = f"{self.url}/{endpoints.BuyMoreUser}"
         payload = {"service_id": serviceId, "count_users": count_users}
         headers = {
-            "X-API-KEY": cohandler.config["bot"]["unknow_api_token"],
+            "X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"],
             "Content-Type": "application/json",
         }
 
@@ -120,7 +120,7 @@ class Api_Request_handler:
     async def createService(self, server_id: str, time: int, size: int, count: int):
         url = f"{self.url}/{endpoints.buyservice}"
 
-        headers = {"X-API-KEY": cohandler.config["bot"]["unknow_api_token"]}
+        headers = {"X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"]}
         payload = (
             '{\r\n    "server_id":"%s",\r\n    "time":"%s",\r\n    "size":"%s",\r\n    "count":"%s"\r\n}'
             % (server_id, time, size, count)
@@ -130,7 +130,7 @@ class Api_Request_handler:
     async def GetAccInfo(self):
         url = f"{self.url}/{endpoints.AccInfo}"
         payload = {}
-        headers = {"X-API-KEY": cohandler.config["bot"]["unknow_api_token"]}
+        headers = {"X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"]}
 
         return await self.send_requets(url, payload, headers)
 
@@ -138,7 +138,7 @@ class Api_Request_handler:
         url = f"{self.url}/{endpoints.AccInfo}"
         payload = json.dumps({"service_id": service_id})
         headers = {
-            "X-API-KEY": cohandler.config["bot"]["unknow_api_token"],
+            "X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"],
             "Content-Type": "application/json",
         }
         return await self.send_requets(url, payload, headers)

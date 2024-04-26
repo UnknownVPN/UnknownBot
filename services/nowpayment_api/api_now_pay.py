@@ -4,12 +4,12 @@ from utilities.config_handler import *
 
 cohandler = ConfigHandler()
 
-api_key = cohandler.config["payment"]["nowpayment_key"]
+api_key = cohandler.getconfig["payment"]["nowpayment_key"]
 
 
 class NowPaymentHandler:
     def __init__(self) -> None:
-        self.url = cohandler.config["payment"]["nowpayments_api_url"]
+        self.url = cohandler.getconfig["payment"]["nowpayments_api_url"]
 
     async def send_requets(self, url, payload, headers):
         async with aiohttp.ClientSession() as session:

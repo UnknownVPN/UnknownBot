@@ -75,7 +75,7 @@ async def member_start_handler(client, message):
         await db.insertNewUser(message.chat.id, "Home", "member")
     await message.reply(
         HELLO_BEFORE_JOIN_TEXT.format(
-            message.from_user.first_name, cohandler.config["bot"]["sponsor_channel"]
+            message.from_user.first_name, cohandler.getconfig["bot"]["sponsor_channel"]
         ),
         reply_markup=BUTTON_BEFORE_JOIN,
     )
@@ -119,9 +119,9 @@ async def member_join_handler(client, message):
 # admin message handler
 @app.on_message(filters.private & IsAdmin(app) & BotCommands.settings)
 async def admin_setting_handler(client, message):
-    buystatus = "فعال" if cohandler.config["settings"]["buystatus"] == "True" else "غیر فعال"
+    buystatus = "فعال" if cohandler.getconfig["settings"]["buystatus"] == "True" else "غیر فعال"
     sponsor_channel = (
-        "فعال" if cohandler.config["bot"]["sponsor_channel"] != False else "غیر فعال"
+        "فعال" if cohandler.getconfig["bot"]["sponsor_channel"] != False else "غیر فعال"
     )
     await message.reply(
         BOT_SETTING.format(buystatus, sponsor_channel),
@@ -140,9 +140,9 @@ async def admin_add_balance(client, message):
 
 @app.on_callback_query(dynamic_data_filter("backtoSettingmanage"))
 async def backtoSettingmanage(client, query):
-    buystatus = "فعال" if cohandler.config["settings"]["buystatus"] == "True" else "غیر فعال"
+    buystatus = "فعال" if cohandler.getconfig["settings"]["buystatus"] == "True" else "غیر فعال"
     sponsor_channel = (
-        "فعال" if cohandler.config["bot"]["sponsor_channel"] != False else "غیر فعال"
+        "فعال" if cohandler.getconfig["bot"]["sponsor_channel"] != False else "غیر فعال"
     )
     await query.edit_message_text(
         BOT_SETTING.format(buystatus, sponsor_channel),
@@ -198,7 +198,7 @@ async def statics(client, message):
 تعداد کل سرویس ها : {info['services_count']}
 آمار کاربران ربات : {user_count}
 موجودی پنل : {info['balance']}
-🆔 @"""+cohandler.config["bot"]["sponsor_bot"]
+🆔 @"""+cohandler.getconfig["bot"]["sponsor_bot"]
     )
 
 
@@ -339,11 +339,11 @@ async def Buyservice(client, message):
 
     if status["balance"] < 500_000:
         await app.send_message(
-            cohandler.config["bot"]["admin"],
+            cohandler.getconfig["bot"]["admin"],
             "❌ موجودی حساب کمتر از 500 هزار تومن است.\nلطفا موجودی Unknown را شارژ کنید.",
         )
         return await message.reply(
-            "⚠️ بخش فروش فعلا در دسترس نمیباشد.\nلطفا با پشتیبانی در ارتباط باشید.\n\n🆔 @"+cohandler.config["bot"]["sponsor_admin"]
+            "⚠️ بخش فروش فعلا در دسترس نمیباشد.\nلطفا با پشتیبانی در ارتباط باشید.\n\n🆔 @"+cohandler.getconfig["bot"]["sponsor_admin"]
         )
 
     user = await db.get_user(message.from_user.id)
@@ -671,17 +671,17 @@ async def memmberStepHandler(client, message):
             list_inline = []
             all_flase = True
             # check ghoghnoos pay status
-            if cohandler.config["settings"]["ghoghnoos_payment"] == "True":
+            if cohandler.getconfig["settings"]["ghoghnoos_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💳 پرداخت با کارت به کارته خودکار",f"paywithcard:{message.text}")])
                 all_flase = False
             
             # check crypto payment status
-            if cohandler.config["settings"]["crypto_payment"] == "True":
+            if cohandler.getconfig["settings"]["crypto_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💸 پرداخت با ارز دیجیتال",f"paywithnowpay:{message.text}")])
                 all_flase = False
             
             # check crypto payment status
-            if cohandler.config["settings"]["card_to_card_channel_payment"] == "True":
+            if cohandler.getconfig["settings"]["card_to_card_channel_payment"] == "True":
                 list_inline.append([InlineKeyboardButton("💳 پرداخت ب صورت کارت به کارت",f"paywithc2c_custom:{message.text}")])
                 all_flase = False
 
@@ -706,7 +706,7 @@ async def memmberStepHandler(client, message):
 @app.on_callback_query(dynamic_data_filter("change_buy_status"))
 async def change_buy_status(client, query):
     buystatus = (
-        "✅ فعال" if cohandler.config["settings"]["buystatus"] == "True" else "❌ غیر فعال"
+        "✅ فعال" if cohandler.getconfig["settings"]["buystatus"] == "True" else "❌ غیر فعال"
     )
 
     keybutton = InlineKeyboardMarkup(
@@ -727,7 +727,7 @@ async def change_buy_status(client, query):
 
 @app.on_callback_query(dynamic_data_filter("change_sponsor"))
 async def change_sponsor(client, query):
-    sponsor_channel = cohandler.config["bot"]["sponsor_channel"]
+    sponsor_channel = cohandler.getconfig["bot"]["sponsor_channel"]
 
     keybutton = InlineKeyboardMarkup(
         [
@@ -753,7 +753,7 @@ async def change_sponsor(client, query):
 async def change_buy_statusOn(client, query):
     cohandler.update_config("bot", "buystatus", "True")
     buystatus = (
-        "✅ فعال" if cohandler.config["settings"]["buystatus"] == "True" else "❌ غیر فعال"
+        "✅ فعال" if cohandler.getconfig["settings"]["buystatus"] == "True" else "❌ غیر فعال"
     )
 
     keybutton = InlineKeyboardMarkup(
@@ -779,7 +779,7 @@ async def change_buy_statusOn(client, query):
 async def change_buy_statusOff(client, query):
     cohandler.update_config("bot", "buystatus", "False")
     buystatus = (
-        "✅ فعال" if cohandler.config["settings"]["buystatus"] == "True" else "❌ غیر فعال"
+        "✅ فعال" if cohandler.getconfig["settings"]["buystatus"] == "True" else "❌ غیر فعال"
     )
 
     keybutton = InlineKeyboardMarkup(
@@ -1676,14 +1676,14 @@ async def Paywithrial(client, query):
     UserId = query.from_user.id
     amount = float(query.data.split(":")[-1])
 
-    # if amount < float(cohandler.config["bot"]["rialMinLimit"]):
+    # if amount < float(cohandler.getconfig["bot"]["rialMinLimit"]):
     #     await query.answer(
-    #         RIAL_MIN_LIMIT_TEXT.format(cohandler.config["bot"]["rialMinLimit"])
+    #         RIAL_MIN_LIMIT_TEXT.format(cohandler.getconfig["bot"]["rialMinLimit"])
     #     )
     #     return
-    # elif amount > float(cohandler.config["bot"]["rialMaxLimit"]):
+    # elif amount > float(cohandler.getconfig["bot"]["rialMaxLimit"]):
     #     await query.answer(
-    #         RIAL_MAX_LIMIT_TEXT.format(cohandler.config["bot"]["rialMaxLimit"])
+    #         RIAL_MAX_LIMIT_TEXT.format(cohandler.getconfig["bot"]["rialMaxLimit"])
     #     )
     #     return
 
@@ -1713,7 +1713,7 @@ async def Paywithrial(client, query):
 @app.on_callback_query(dynamic_data_filter("Buypayrial"))
 async def Paywithrial(client, query):
     UserId = query.from_user.id
-    if cohandler.config["settings"]["buystatus"] != "True":
+    if cohandler.getconfig["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
 
@@ -1722,10 +1722,10 @@ async def Paywithrial(client, query):
     # _, server_id, user_count, size, CHtime = payment["detail"].split("_")
 
     # amount = float(prices.size[int(user_count)][int(size)])
-    # if amount < float(cohandler.config["bot"]["rialMinLimit"]):
+    # if amount < float(cohandler.getconfig["bot"]["rialMinLimit"]):
     #     await query.answer(RIAL_MIN_LIMIT_TEXT)
     #     return
-    # elif amount > float(cohandler.config["bot"]["rialMaxLimit"]):
+    # elif amount > float(cohandler.getconfig["bot"]["rialMaxLimit"]):
     #     await query.answer(RIAL_MAX_LIMIT_TEXT)
 
     # dollar = await nowapi.GetDollarPrice()
@@ -1760,7 +1760,7 @@ async def Paywithnow(client, query):
 @app.on_callback_query(dynamic_data_filter("buypaywithcard"))
 async def buypaywithcard(client, query):
     UserId = query.from_user.id
-    if cohandler.config["settings"]["buystatus"] != "True":
+    if cohandler.getconfig["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[1]
@@ -1772,7 +1772,7 @@ async def buypaywithcard(client, query):
 @app.on_callback_query(dynamic_data_filter("buypaywithnow"))
 async def BuyPaywithnow(client, query):
     UserId = query.from_user.id
-    if cohandler.config["settings"]["buystatus"] != "True":
+    if cohandler.getconfig["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[1]
@@ -1798,15 +1798,15 @@ async def paywithbalance(client, query):
 
     if status["balance"] < 500_000:
         await app.send_message(
-            cohandler.config["bot"]["admin"],
+            cohandler.getconfig["bot"]["admin"],
             "❌ موجودی حساب کمتر از 500 هزار تومن است.\nلطفا موجودی Unknown را شارژ کنید.",
         )
         return await query.reply(
-            "⚠️ بخش فروش فعلا در دسترس نمیباشد.\nلطفا با پشتیبانی در ارتباط باشید.\n\n🆔 @"+cohandler.config["bot"]["sponsor_admin"]
+            "⚠️ بخش فروش فعلا در دسترس نمیباشد.\nلطفا با پشتیبانی در ارتباط باشید.\n\n🆔 @"+cohandler.getconfig["bot"]["sponsor_admin"]
         )
 
     UserId = query.from_user.id
-    if cohandler.config["settings"]["buystatus"] != "True":
+    if cohandler.getconfig["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[1]
@@ -1899,16 +1899,16 @@ async def PayCoin(client, query):
 
     if status["balance"] < 500_000:
         await app.send_message(
-            cohandler.config["bot"]["admin"],
+            cohandler.getconfig["bot"]["admin"],
             "❌ موجودی حساب کمتر از 500 هزار تومن است.\nلطفا موجودی Unknown را شارژ کنید.",
         )
         return await query.reply(
-            "⚠️ بخش فروش فعلا در دسترس نمیباشد.\nلطفا با پشتیبانی در ارتباط باشید.\n\n🆔 @"+cohandler.config["bot"]["sponsor_admin"]
+            "⚠️ بخش فروش فعلا در دسترس نمیباشد.\nلطفا با پشتیبانی در ارتباط باشید.\n\n🆔 @"+cohandler.getconfig["bot"]["sponsor_admin"]
         )
 
     UserId = query.from_user.id
     coin = query.data.split(":")[1]
-    if cohandler.config["settings"]["buystatus"] != "True":
+    if cohandler.getconfig["settings"]["buystatus"] != "True":
         await query.answer(CANT_BUY_TEXT)
         return
     payment_id = query.data.split(":")[2]
@@ -1986,7 +1986,7 @@ async def PayCoin(client, query):
     else:
         await query.answer(UNKNOWN_ERROR)
         await app.send_message(
-            cohandler.config["bot"]["admin"],
+            cohandler.getconfig["bot"]["admin"],
             ERROR_TEXT.format(status["statusCode"], status["code"], status["message"]),
         )
 
@@ -2210,7 +2210,7 @@ async def apiMsgErrorHandler(status, query, type=None):
             await query.reply(
                 "پنل موجودی کافی برای انجام عملیات مورد نظر را نداد  لطفا به پشتیبانی اطلاع  دهید"
             )
-            await app.send_message(cohandler.config["bot"]["admin"], "کمبود موجودی پنل")
+            await app.send_message(cohandler.getconfig["bot"]["admin"], "کمبود موجودی پنل")
         elif status["message"] == "maintenance":
             await query.reply(MAINTENANCE_SERVER_TEXT)
             return
@@ -2251,7 +2251,7 @@ async def apiQueryErrorHandler(status, query, type=None):
             await query.answer(
                 "پنل موجودی کافی برای انجام عملیات مورد نظر را نداد  لطفا به پشتیبانی اطلاع  دهید"
             )
-            await app.send_message(cohandler.config["bot"]["admin"], "کمبود موجودی پنل")
+            await app.send_message(cohandler.getconfig["bot"]["admin"], "کمبود موجودی پنل")
         elif status["message"] == "same name":
             await query.answer(USED_NAME_TEXT)
             return
