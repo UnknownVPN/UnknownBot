@@ -1554,7 +1554,6 @@ async def SendQR(self, query):
         return
 
     dir_link = await unknownApi.getservicelinks(license)
-    print(dir_link)
     if not dir_link:
         return await apiQueryErrorHandler({"message": "unknown"}, query)
 
@@ -1576,7 +1575,7 @@ async def SendQR(self, query):
         byte_io = io.BytesIO()
         img.save(byte_io, "PNG")
         byte_io.seek(0)
-        if "vless://" in dir_link:
+        if "vless" in data:
             nekoray = vless_to_nekoray(
                 dir_link["direct"],
                 serviceinfo["service"]["name"],
