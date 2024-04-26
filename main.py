@@ -1585,7 +1585,7 @@ async def SendQR(self, query):
                 query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
             )
             await app.send_message(
-                query.from_user.id,VLESS_TEXT.format(data,nekoray)
+                query.from_user.id,VLESS_TEXT.format(nekoray)
             )
         else:
             await app.send_photo(
