@@ -320,7 +320,7 @@ async def user_balance(client, message):
     user = await db.get_user(message.from_user.id)
     if user:
         await message.reply(
-            BALANCE_MESSAGE.format(user["_id"], user["balance"]),
+            BALANCE_MESSAGE.format(user["_id"], f"{user["balance"]:,}"),
             reply_markup=BALANCE_BUTTONS,
         )
     return
@@ -428,7 +428,7 @@ async def memmberStepHandler(client, message):
                 return
             
             await message.reply(
-                PAY_CARD_TEXT.format(payment["amount"], data["number"], data["name"]),
+                PAY_CARD_TEXT.format(f"{payment["amount"]:,}", data["number"], data["name"]),
                 reply_markup=HELLO_BUTTONS,
             )
             await db.insertCardPayments(
