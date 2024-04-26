@@ -1,0 +1,16 @@
+[Unit]
+Description=Unknown Sponsor Bot
+After=syslog.target
+After=network.target
+
+[Service]
+WorkingDirectory=/root/UnknownBot/
+ExecStart=python3 -u main.py
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=unknownvpnbot
+Environment="PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.10/dist-packages"
+
+[Install]
+WantedBy=multi-user.target
