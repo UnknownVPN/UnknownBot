@@ -15,11 +15,12 @@ def change_service_name(name: str, flag: str):
 
 def vless_to_nekoray(vless:str, name: str, flag: str):
     data = vless.split("vless://")[1]
-    url_encoded = unquote(data.split("?")[0])
-    uuid = url_encoded.split("@")[0]
-    addr = url_encoded.split("@")[1].split(":")[0]
-    port = url_encoded.split("@")[1].split(":")[1]
-    host = url_encoded.split("&host=")[1].split("&")[0]
+    data_ = data.split("?")[0]
+    url_decoded = unquote(data.split("?")[1])
+    uuid = data_.split("@")[0]
+    addr = data_.split("@")[1].split(":")[0]
+    port = data_.split("@")[1].split(":")[1]
+    host = url_decoded.split("&host=")[1].split("&")[0]
     name_full = change_service_name(name,flag)
     vless_nekoray = {"_v": 0, "addr": addr, "name": name_full, "pass": uuid, "port": port, "stream": {"ed_len": 0, "h_type": "http", "host": host, "insecure": False, "net": "tcp", "path": "/"}}
     vless_nekoray = json.dumps(vless_nekoray)
