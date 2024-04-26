@@ -1,6 +1,6 @@
 from base64 import b64encode, b64decode
 from json import loads, dumps
-from urllib.parse import quote
+from urllib.parse import quote,unquote
 from utilities.config_handler import ConfigHandler
 import requests
 import base64
@@ -15,7 +15,7 @@ def change_service_name(name: str, flag: str):
 
 def vless_to_nekoray(vless:str, name: str, flag: str):
     data = vless.split("vless://")[1]
-    url_encoded = data.split("?")[0]
+    url_encoded = unquote(data.split("?")[0])
     uuid = url_encoded.split("@")[0]
     addr = url_encoded.split("@")[1].split(":")[0]
     port = url_encoded.split("@")[1].split(":")[1]
