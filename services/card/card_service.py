@@ -140,11 +140,18 @@ async def get_transaction_status(card: int, amount: int):
             },timeout=5
         ).json()
 
-        if data["status"]:
-            logger(__name__).info(f"Payment Success! {card} {amount} {data}")
-            return True
-
-        return False
+        if isinstance(data,bool):
+            if not data:
+                return False
+        elif isinstance(data,dict):
+            if data["status"]:
+                logger(__name__).info(f"Payment Success! {card} {amount} {data}")
+                return True
+            else:
+                return False
+        else:
+            logger(__name__).info(f"Unknown type {type(data)} {data}")
+            return False
 
     except Exception as e:
         logger(__name__).error(f"Error in get card request {e}")
