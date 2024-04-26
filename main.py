@@ -129,8 +129,8 @@ async def admin_setting_handler(client, message):
     )
     return
 
-@app.on_message(filters.private & BotCommands.admin_add_balance & ~IsAdmin(app))
-async def member_start_handler(client, message):
+@app.on_message(filters.private & BotCommands.admin_add_balance & IsAdmin(app))
+async def admin_add_balance(client, message):
     s = message.text.split(" ")
     user_id = int(s[1])
     amount = int(s[2])
