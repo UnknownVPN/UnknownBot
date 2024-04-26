@@ -21,3 +21,4 @@ class BotCommands:
     balance = filters.regex("^💰 کیف پول$")
     addsize = filters.regex("^♾ حجم اضافه$")
     modeBalance = filters.command("modbalance")
+    admin_add_balance = filters.regex("^/addb ")

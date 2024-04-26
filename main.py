@@ -129,6 +129,14 @@ async def admin_setting_handler(client, message):
     )
     return
 
+@app.on_message(filters.private & BotCommands.admin_add_balance & ~IsAdmin(app))
+async def member_start_handler(client, message):
+    s = message.text.split(" ")
+    user_id = int(s[1])
+    amount = int(s[2])
+    await db.inc_user_amount(user_id,amount)
+    result = await db.get_user(user_id)
+    await message.reply(str(result))
 
 @app.on_callback_query(dynamic_data_filter("backtoSettingmanage"))
 async def backtoSettingmanage(client, query):
