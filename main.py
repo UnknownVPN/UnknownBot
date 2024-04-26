@@ -1581,8 +1581,10 @@ async def SendQR(self, query):
                 serviceinfo["service"]["name"],
                 serviceinfo["service"]["server_name"].split(" ")[0]
             )
-
             await app.send_photo(
+                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
+            )
+            await app.send_message(
                 query.from_user.id, photo=byte_io, caption=VLESS_TEXT.format(data,nekoray)
             )
         else:

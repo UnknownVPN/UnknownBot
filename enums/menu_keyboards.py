@@ -1282,17 +1282,16 @@ SUCCESSFULL_ADD_SIZE_USER_TEXT = (
 NOT_AVAILABLE_FOR_FREE_SERVICES = """❌ این قابلیت برای سرویس های رایگان در دسترس نیست"""
 
 QRCODE_STRING = (
-    """<code>{}</code>
+    """📌 لینک اتصال داخلی شما 👇
+
+<code>{}</code>
 
 🆔 @"""
     + cohandler.getconfig["bot"]["sponsor_bot"]
 )
 
 VLESS_TEXT = """📌 لینک اتصال داخلی شما 👇
-
-🔗 Link (IP): {}
-
-🔗 Nekoray Link (IP): {}
+🔗 Nekoray Link (IP): <code>{}</code>
 
 🆔 @"""+cohandler.getconfig["bot"]["sponsor_bot"]
 
