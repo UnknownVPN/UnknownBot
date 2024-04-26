@@ -9,12 +9,13 @@ from datetime import datetime
 class ConfigHandler:
     def __init__(self):
         self.config = configparser.ConfigParser()
-        self.config.read("config.ini", encoding="utf-8")
 
     def getconfig(self):
+        self.config.read("config.ini", encoding="utf-8")
         return self.config
 
     def update_config(self, section, option, value):
+        self.config.read("config.ini", encoding="utf-8")
         self.config.set(section, option, value)
         with open("config.ini", "w", encoding="utf-8") as con:
             self.config.write(con)
