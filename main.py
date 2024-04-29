@@ -1030,6 +1030,7 @@ async def addsizeto(client, query):
                     "Done",
                     f"BuyMore_Size_{service['service']['id']}_{size}",
                 )
+                db.updateServiceWarn85(service['service']['license'],False)
                 await query.edit_message_text(SUCCESSFULL_ADD_SIZE_USER_TEXT)
                 await app.send_message(
                     UserId, CANCEL_ADD_BALANCE_TEXT, reply_markup=HELLO_BUTTONS

@@ -32,6 +32,7 @@ async def notifier(stop_event):
                 alarm = Service["alarm"]
                 auto_pay = Service["autopay"]
                 vpnstatus = Service["status"]
+                warn85 = Service["warn85"] # remain_size , used_size , users_count
                 if vpnstatus == False:
                     continue
                 license = Service["license"]
@@ -72,6 +73,7 @@ async def notifier(stop_event):
                                 ExteService = await unknownApi.ExteService(
                                     service_info["service"]["id"]
                                 )
+                                db.updateServiceWarn85(license,False)
                                 if ExteService and ExteService["status"]:
                                     await app.send_message(
                                         owner,
@@ -88,6 +90,18 @@ async def notifier(stop_event):
                                 )
                                 await db.SetVpnServiceAutopay(license, False)
                                 continue
+
+                    if not warn85:
+                        size = Service["size"]
+                        size85 = size * 0.85
+                        used_size = service_info["service"]["used_size"]
+                        if used_size >= size85:
+                            db.updateServiceWarn85(license,True)
+                            await app.send_message(
+                                owner,
+                                SERVICE_SIZE_85_TEXT.format(service_info["service"]["name"]),
+                                disable_web_page_preview=True,
+                            )
 
             except Exception as ex:
                 logger(__name__).error(

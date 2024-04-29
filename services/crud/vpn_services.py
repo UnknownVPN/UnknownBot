@@ -37,6 +37,7 @@ class vpnServices(MongoDBHandler):
             "size": size,
             "user_count": user_count,
             "status": status,
+            "warn85": False,
             "dir_link": change_config_name(dir_link, name, flag),
         }
         return await self.insert(self.vpnCollectionName, query)
@@ -60,6 +61,13 @@ class vpnServices(MongoDBHandler):
             "license": license,
         }
         update_data = {"$set": {"status": status}}
+        await self.update(self.vpnCollectionName, query, update_data)
+
+    async def updateServiceWarn85(self, license, status):
+        query = {
+            "license": license,
+        }
+        update_data = {"$set": {"warn85": status}}
         await self.update(self.vpnCollectionName, query, update_data)
 
     async def SetVpnServiceAlarm(self, license, alarm=True):
