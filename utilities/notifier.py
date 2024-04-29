@@ -73,7 +73,7 @@ async def notifier(stop_event):
                                 ExteService = await unknownApi.ExteService(
                                     service_info["service"]["id"]
                                 )
-                                db.updateServiceWarn85(license,False)
+                                await db.updateServiceWarn85(license,False)
                                 if ExteService and ExteService["status"]:
                                     await app.send_message(
                                         owner,
@@ -96,7 +96,7 @@ async def notifier(stop_event):
                         size85 = size * 0.85
                         used_size = service_info["service"]["used_size"]
                         if used_size >= size85:
-                            db.updateServiceWarn85(license,True)
+                            await db.updateServiceWarn85(license,True)
                             await app.send_message(
                                 owner,
                                 SERVICE_SIZE_85_TEXT.format(service_info["service"]["name"]),
