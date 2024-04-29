@@ -1662,7 +1662,7 @@ async def BackToServiceList(client, query):
                     [
                         InlineKeyboardButton(
                             f"{services['flag']} {services['name']} {protocol_name}",
-                            callback_data=f"getservice:{services['license']} {protocol_name}",
+                            callback_data=f"getservice:{services['license']}",
                         )
                     ]
                 )
