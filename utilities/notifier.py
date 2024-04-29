@@ -40,6 +40,18 @@ async def notifier(stop_event):
                 service_info = await unknownApi.getApiServiceInfo(license)
 
                 if service_info and service_info["status"]:
+                    if not warn85:
+                        size = Service["size"]
+                        size85 = size * 0.85
+                        used_size = service_info["service"]["used_size"]
+                        if used_size >= size85:
+                            await db.updateServiceWarn85(license,True)
+                            await app.send_message(
+                                owner,
+                                SERVICE_SIZE_85_TEXT.format(service_info["service"]["name"]),
+                                disable_web_page_preview=True,
+                            )
+                        
                     if alarm:
                         conn = await unknownApi.GetServiceConn(license)
                         if conn and conn["status"]:
@@ -90,18 +102,6 @@ async def notifier(stop_event):
                                 )
                                 await db.SetVpnServiceAutopay(license, False)
                                 continue
-
-                    if not warn85:
-                        size = Service["size"]
-                        size85 = size * 0.85
-                        used_size = service_info["service"]["used_size"]
-                        if used_size >= size85:
-                            await db.updateServiceWarn85(license,True)
-                            await app.send_message(
-                                owner,
-                                SERVICE_SIZE_85_TEXT.format(service_info["service"]["name"]),
-                                disable_web_page_preview=True,
-                            )
 
             except Exception as ex:
                 logger(__name__).error(
