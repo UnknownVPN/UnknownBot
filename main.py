@@ -1657,11 +1657,12 @@ async def BackToServiceList(client, query):
         for services in user_services_list:
             ser = await unknownApi.getApiServiceInfo(services["license"])
             if ser:
+                protocol_name = "ᵛᵐᵉˢˢ" if ser["service"]["protocol"] == "vmess" else "ᵛˡᵉˢˢ"
                 servicebuttons.append(
                     [
                         InlineKeyboardButton(
-                            f"{services['flag']} {services['name']}",
-                            callback_data=f"getservice:{services['license']}",
+                            f"{services['flag']} {services['name']} {protocol_name}",
+                            callback_data=f"getservice:{services['license']} {protocol_name}",
                         )
                     ]
                 )
