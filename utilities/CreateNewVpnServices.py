@@ -31,7 +31,7 @@ async def CreateService(server_id, CHtime, size, user_count, app, payment):
             await app.send_message(
                 user["refferal"], REF_BUY_SUCESSS.format(prices.giftAmount)
             )
-        return
+        return ServiceInfo["service"]
     else:
         if BuyStatus:
             if BuyStatus["message"] == "server full":

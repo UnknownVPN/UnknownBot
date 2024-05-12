@@ -2029,9 +2029,12 @@ async def checkpayment(client, query):
                     _, server_id, user_count, size, CHtime = payment["detail"].split(
                         "_"
                     )
-                    await CreateService(
+                    resul = await CreateService(
                         server_id, int(CHtime), int(size), int(user_count), app, payment
                     )
+                    am = payment["amount"]
+                    if resul:
+                        admin_logger.new_service_log(app,"Buy Service",UserId,payment_id,resul["license"],resul["name"],int(CHtime),int(user_count),int(size),f"{am:,}","None")
                     return
                 elif "ADD_BALANCE" in payment["detail"]:
                     await query.edit_message_text(
