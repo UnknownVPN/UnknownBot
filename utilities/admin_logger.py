@@ -34,3 +34,7 @@ async def new_service_log(
     )
 
     await app.send_message(int(cohandler.getconfig["bot"]["log_channel"]),text)
+
+async def new_card(app,card,amount,tid,user_id):
+    text = PAYEMNT_SUCCESS_LOGGER.format(card,amount,tid,user_id)
+    await app.send_message(int(cohandler.getconfig["bot"]["log_channel"]),text)
