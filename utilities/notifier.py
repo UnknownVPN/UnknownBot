@@ -19,7 +19,7 @@ async def notifier(stop_event):
     global _count_to_log
     while not stop_event.is_set():
         Services = await db.get_all_services()
-        if _count_to_log == 10:
+        if _count_to_log == 100:
             logger(__name__).info(f"services: {len(Services)}")
             _count_to_log = 0
 
