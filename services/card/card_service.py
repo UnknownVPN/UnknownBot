@@ -41,11 +41,10 @@ async def handl_trasection(stop_event):
                     continue
                 
                 payment = await db.get_payment(transaction["_id"])
-                if payment and ("ADD_BALANCE" in payment["detail"] or "BuyService" in payment["detail"]):
-                    mm = transaction["amount"]
-                    await admin_logger.new_card(app,transaction["Card_Number"],f"{mm:,}",transaction["_id"],payment["user_id"])
+                mm = transaction["amount"]
 
                 if payment and "ADD_BALANCE" in payment["detail"]:
+                    await admin_logger.new_card(app,'Add Balance',transaction["Card_Number"],f"{mm:,}",transaction["_id"],payment["user_id"])
                     await db.updatePaymentStatus(transaction["_id"], "Done")
                     await db.updateCardPaymentStatus(transaction["_id"], "Done")
                     await app.send_message(
@@ -55,6 +54,7 @@ async def handl_trasection(stop_event):
                     await db.inc_user_amount(payment["user_id"], transaction["amount"])
 
                 elif "BuyService" in payment["detail"]:
+                    await admin_logger.new_card(app,'Buy Service',transaction["Card_Number"],f"{mm:,}",transaction["_id"],payment["user_id"])
                     _, server_id, user_count, size, CHtime = payment["detail"].split(
                         "_"
                     )
