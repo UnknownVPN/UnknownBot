@@ -40,11 +40,11 @@ async def handl_trasection(stop_event):
                 if not status:
                     continue
                 
+                payment = await db.get_payment(transaction["_id"])
                 if payment and ("ADD_BALANCE" in payment["detail"] or "BuyService" in payment["detail"]):
                     mm = transaction["amount"]
                     await admin_logger.new_card(app,transaction["Card_Number"],f"{mm:,}",transaction["_id"],payment["user_id"])
 
-                payment = await db.get_payment(transaction["_id"])
                 if payment and "ADD_BALANCE" in payment["detail"]:
                     await db.updatePaymentStatus(transaction["_id"], "Done")
                     await db.updateCardPaymentStatus(transaction["_id"], "Done")
