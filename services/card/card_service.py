@@ -7,7 +7,7 @@ from utilities.config_handler import ConfigHandler, logger
 from utilities import admin_logger
 import asyncio, requests
 from enums.prices import prices
-
+import asyncio
 
 db = dbService()
 unknownApi = Api_Request_handler()
@@ -131,7 +131,7 @@ async def handl_trasection(stop_event):
     return
 
 
-async def get_transaction_status(card: int, amount: int):
+async def get_transaction_status(card: int, amount: int,tries=5):
     url = cohandler.getconfig["payment"]["ghoghnoos_gateway"]
     admin_key = cohandler.getconfig["payment"]["ghoghnoos_admin_key"]
 
@@ -160,11 +160,14 @@ async def get_transaction_status(card: int, amount: int):
             return False
 
     except Exception as e:
-        logger(__name__).error(f"Error in get card request {e}")
-        return False
+        if tries == 0:
+            logger(__name__).error(f"Error in get card request {e}")
+            return False
+        await asyncio.sleep(4)
+        return await get_transaction_status(card, amount,tries=tries-1)
 
 
-async def get_card():
+async def get_card(tries=5):
     url = cohandler.getconfig["payment"]["ghoghnoos_gateway"]
     admin_key = cohandler.getconfig["payment"]["ghoghnoos_admin_key"]
 
@@ -182,5 +185,8 @@ async def get_card():
         return True, data[0]
 
     except Exception as e:
-        logger(__name__).error(f"Error in get card request {e}\n{_request.text}")
-        return False, None
+        if tries == 0:
+            logger(__name__).error(f"Error in get card request {e}\n{_request.text}")
+            return False, None
+        await asyncio.sleep(4)
+        return await get_transaction_status(tries=tries-1)

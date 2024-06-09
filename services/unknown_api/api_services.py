@@ -2,7 +2,7 @@ import aiohttp
 from enums.unknown_api_end_point import endpoints
 import logging, json, time
 from utilities.config_handler import *
-
+import asyncio
 
 cohandler = ConfigHandler()
 
@@ -11,7 +11,7 @@ class Api_Request_handler:
     def __init__(self) -> None:
         self.url = cohandler.getconfig["payment"]["unknow_api_url"]
 
-    async def send_requets(self, url, payload, headers):
+    async def send_requets(self, url, payload, headers, tries=5):
         async with aiohttp.ClientSession() as session:
             try:
                 respons = await session.get(
@@ -20,8 +20,11 @@ class Api_Request_handler:
                 return await respons.json()
 
             except Exception as ex:
-                logging.error(f"getting {url} faild error : \n {ex}")
-                return None
+                if tries == 0:
+                    logging.error(f"getting {url} faild error : \n {ex}")
+                    return None
+                await asyncio.sleep(4)
+                return await self.send_requets(url, payload, headers, tries=5)
 
     async def sendPostRequests(self, url, payload, headers):
         async with aiohttp.ClientSession() as session:
