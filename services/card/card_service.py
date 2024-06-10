@@ -189,4 +189,4 @@ async def get_card(tries=5):
             logger(__name__).error(f"Error in get card request {e}\n{_request.text}")
             return False, None
         await asyncio.sleep(4)
-        return await get_transaction_status(tries=tries-1)
+        return await get_card(tries=tries-1)
