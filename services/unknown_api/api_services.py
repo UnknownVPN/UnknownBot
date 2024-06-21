@@ -138,7 +138,7 @@ class Api_Request_handler:
         return await self.send_requets(url, payload, headers)
 
     async def ExteService(self, service_id: str):
-        url = f"{self.url}/{endpoints.AccInfo}"
+        url = f"{self.url}/{endpoints.extensionservice}"
         payload = json.dumps({"service_id": service_id})
         headers = {
             "X-API-KEY": cohandler.getconfig["bot"]["unknow_api_token"],
