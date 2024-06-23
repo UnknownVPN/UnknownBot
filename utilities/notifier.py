@@ -98,7 +98,7 @@ async def notifier(stop_event):
                                     await db.inc_user_amount(owner, int(price))
                             else:
                                 await app.send_message(
-                                    owner, NO_BALANCE_FOR_AUTO_PAY_TEXT
+                                    owner, NO_BALANCE_FOR_AUTO_PAY_TEXT.format(service_info["service"]["name"])
                                 )
                                 await db.SetVpnServiceAutopay(license, False)
                                 continue
