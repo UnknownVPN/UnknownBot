@@ -30,6 +30,7 @@ import io, nest_asyncio
 import asyncio
 import qrcode
 import pytz
+from time import time
 from random import choices
 from enums.app import app
 
@@ -297,6 +298,14 @@ async def user_services(client, message):
         for services in user_services_list:
             service = await unknownApi.getApiServiceInfo(services["license"])
             if service["status"] and not service['service']['expired']:
+                text = ""
+                
+                if service['service']['used_size'] / (service['service']['size'] / 100) > 85:
+                    text = " 🪫"
+                
+                if (service['service']['expiryTime'] - time()) / 86400 <= 3:
+                    text = " ⌛️"
+                    
                 protocol_name = "ᵛᵐᵉˢˢ" if service["service"]["protocol"] == "vmess" else "ᵛˡᵉˢˢ"
                 servicebuttons.append(
                     [
