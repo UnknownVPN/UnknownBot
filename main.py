@@ -1589,20 +1589,12 @@ async def SendQR(self, query):
         img.save(byte_io, "PNG")
         byte_io.seek(0)
         if "vless" in data:
-            nekoray = vless_to_nekoray(
-                dir_link["direct"],
-                serviceinfo["service"]["name"],
-                serviceinfo["service"]["server_name"].split(" ")[0]
-            )
             await app.send_photo(
-                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
-            )
-            await app.send_message(
-                query.from_user.id,VLESS_TEXT.format(nekoray)
+                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format("مخصوص آیفون", data)
             )
         else:
             await app.send_photo(
-                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
+                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format("مخصوص اندروید و ویندوز", data)
             )
 
     else:
