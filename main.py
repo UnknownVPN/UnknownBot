@@ -1118,7 +1118,7 @@ async def getservice(client, query):
             ],
             [
                 InlineKeyboardButton(
-                    "🔥 تغییر پروتکل", callback_data=f"changeprotocol:{license}"
+                    "🔥 تغییر پروتکل (اندروید، ویندوز، آیفون)", callback_data=f"changeprotocol:{license}"
                 )
             ],
             [InlineKeyboardButton("🔙 بازگشت", callback_data=f"backtoServiceList")],
@@ -1149,13 +1149,15 @@ async def ChangeProtocol(client, query):
     if serviceinfo == None or serviceinfo["status"] == False:
         await query.answer(SERVICE_NOT_FOUND_TEXT)
         return
-    vmess = "✅ Vmess" if serviceinfo["service"]["protocol"] == "vmess" else "Vmess"
-    vless = "✅ Vless" if serviceinfo["service"]["protocol"] == "vless" else "Vless"
+    vmess = "✅ Vmess (اندروید و ویندوز)" if serviceinfo["service"]["protocol"] == "vmess" else "Vmess (اندروید و ویندوز)"
+    vless = "✅ Vless (آیفون)" if serviceinfo["service"]["protocol"] == "vless" else "Vless (آیفون)"
 
     keybutton = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(vmess, callback_data=f"changeto:{license}:vmess"),
+            ],
+            [
                 InlineKeyboardButton(vless, callback_data=f"changeto:{license}:vless"),
             ],
             [
