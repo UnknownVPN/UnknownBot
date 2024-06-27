@@ -80,8 +80,9 @@ async def notifier(stop_event):
                             service_info["service"]["extendable"]
                             and time.time() > service_info["service"]["expiryTime"]
                         ):
-                            transStatus = await db.MakeBuyTransection(owner, price)
-                            if transStatus:
+                            userd = await db.get_user(owner)
+                            if userd['balance'] >= price:
+                                await db.inc_user_amount(owner,-price)
                                 ExteService = await unknownApi.ExteService(
                                     service_info["service"]["id"]
                                 )
