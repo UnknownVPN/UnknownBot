@@ -310,7 +310,7 @@ async def user_services(client, message):
                 servicebuttons.append(
                     [
                         InlineKeyboardButton(
-                            f"{services['flag']} {services['name']} {protocol_name}",
+                            f"{services['flag']}{text} {services['name']} {protocol_name}",
                             callback_data=f"getservice:{services['license']}",
                         )
                     ]
