@@ -30,6 +30,7 @@ import io, nest_asyncio
 import asyncio
 import qrcode
 import pytz
+from time import time
 from random import choices
 from enums.app import app
 
@@ -297,11 +298,19 @@ async def user_services(client, message):
         for services in user_services_list:
             service = await unknownApi.getApiServiceInfo(services["license"])
             if service["status"] and not service['service']['expired']:
+                text = ""
+                
+                if service['service']['used_size'] / (service['service']['size'] / 100) > 85:
+                    text = " 🪫"
+                
+                if (service['service']['expiryTime'] - time()) / 86400 <= 3:
+                    text = " ⌛️"
+                    
                 protocol_name = "ᵛᵐᵉˢˢ" if service["service"]["protocol"] == "vmess" else "ᵛˡᵉˢˢ"
                 servicebuttons.append(
                     [
                         InlineKeyboardButton(
-                            f"{services['flag']} {services['name']} {protocol_name}",
+                            f"{services['flag']}{text} {services['name']} {protocol_name}",
                             callback_data=f"getservice:{services['license']}",
                         )
                     ]
@@ -1109,7 +1118,7 @@ async def getservice(client, query):
             ],
             [
                 InlineKeyboardButton(
-                    "🔥 تغییر پروتکل", callback_data=f"changeprotocol:{license}"
+                    "🔥 تغییر پروتکل (اندروید، ویندوز، آیفون)", callback_data=f"changeprotocol:{license}"
                 )
             ],
             [InlineKeyboardButton("🔙 بازگشت", callback_data=f"backtoServiceList")],
@@ -1140,13 +1149,15 @@ async def ChangeProtocol(client, query):
     if serviceinfo == None or serviceinfo["status"] == False:
         await query.answer(SERVICE_NOT_FOUND_TEXT)
         return
-    vmess = "✅ Vmess" if serviceinfo["service"]["protocol"] == "vmess" else "Vmess"
-    vless = "✅ Vless" if serviceinfo["service"]["protocol"] == "vless" else "Vless"
+    vmess = "✅ Vmess (اندروید و ویندوز)" if serviceinfo["service"]["protocol"] == "vmess" else "Vmess (اندروید و ویندوز)"
+    vless = "✅ Vless (آیفون)" if serviceinfo["service"]["protocol"] == "vless" else "Vless (آیفون)"
 
     keybutton = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(vmess, callback_data=f"changeto:{license}:vmess"),
+            ],
+            [
                 InlineKeyboardButton(vless, callback_data=f"changeto:{license}:vless"),
             ],
             [
@@ -1578,20 +1589,12 @@ async def SendQR(self, query):
         img.save(byte_io, "PNG")
         byte_io.seek(0)
         if "vless" in data:
-            nekoray = vless_to_nekoray(
-                dir_link["direct"],
-                serviceinfo["service"]["name"],
-                serviceinfo["service"]["server_name"].split(" ")[0]
-            )
             await app.send_photo(
-                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
-            )
-            await app.send_message(
-                query.from_user.id,VLESS_TEXT.format(nekoray)
+                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format("مخصوص آیفون", data)
             )
         else:
             await app.send_photo(
-                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format(data)
+                query.from_user.id, photo=byte_io, caption=QRCODE_STRING.format("مخصوص اندروید و ویندوز", data)
             )
 
     else:
