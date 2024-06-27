@@ -43,7 +43,7 @@ HELLO_BEFORE_JOIN_TEXT = """سلام {} 🖐
 
 🌿جهت استفاده از خدمات ربات، ابتدا در کانال ما عضو شوید
 
-سپس روی /start کلیک کنید
+سپس روی دکمه ی "♻️ شروع دوباره ♻️" کلیک کنید.
 
 🆔 @{}"""
 
@@ -63,7 +63,13 @@ BUTTON_BEFORE_JOIN = InlineKeyboardMarkup(
         [
             InlineKeyboardButton(
                 text=cohandler.getconfig["bot"]["custom_name_fa"],
-                url=f"https://t.me/{cohandler.getconfig['bot']['sponsor_channel'].replace('https://t.me/','')}",
+                url=f"https://t.me/{cohandler.getconfig['bot']['sponsor_channel']}",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="♻️ شروع دوباره ♻️",
+                url=f"https://t.me/{cohandler.getconfig['bot']['sponsor_bot']}?start=start",
             )
         ]
     ]
